@@ -1,0 +1,188 @@
+{
+  "action-figures": [
+    {
+      "prod": "Cloud Strife Final Fantasy VII Action Figure",
+      "desc": "A face desta figura de brinquedo é vívida e charmosa, com uma aparência vívida de uma atmosfera exclusiva, ela tem uma pose incrível com inspiração brilhante e uma imaginação estimulante.",
+      "image": "cloud.jpg",
+      "price": "R$ 366,28"
+    },
+    {
+      "prod": "Devil Jin Tekken 7 Action Figure",
+      "desc": "Action Figure Devil Jin, É um dos personagens principais da série Tekken . Ele é apresentado na embalagem da versão para console de quase todas as sequências após sua introdução em Tekken 5 . Ele tem sido o protagonista principal da maioria das entradas a seguir, desde sua estréia em Tekken 5 , e tem tentado acabar com a linhagem de Mishima para salvar o mundo de seu mal. Action Figure com aproximadamente 10cm de Altura.",
+      "image": "devil-jin.jpg",
+      "price": "R$ 661,04"
+    },
+    {
+      "prod": "Doom Slayer Doom Eternal Action Figure",
+      "desc": "O Doom Slayer foi fielmente recriado em tamanho grande. \n Usando as articulações suaves, porém articuladas da figma, você pode criar uma variedade de poses da série.\n Um plástico flexível é usado para áreas importantes, permitindo que as proporções sejam mantidas sem comprometer a posibilidade.\n A motosserra, Super Shotgun, Crucible Blade e BFG-9000 estão incluídos como peças opcionais.\n  As peças são incluídas para exibir o Launcher do equipamento e o DOOM Blade nas formas retraída e aberta.\n Um suporte de figma articulado está incluído para exibi-la em uma variedade de poses.",
+      "image": "doomslayer.jpg",
+      "price": "R$ 919,90"
+    },
+    {
+      "prod": "Kratos God Of War 3 Action Figure",
+      "desc": "Com o Kratos do God of War da Neca as horas de diversão são garantidas. Você poderá brincar com eles seguindo suas histórias ou colecionar pelo tempo que quiser.",
+      "image": "kratos.jpg",
+      "price": "R$ 199,90"
+    },
+    {
+      "prod": "Link The Legend of Zelda Skyward Sword Action Figure",
+      "desc": "Action Figure Boneco Link - The Legend of Zelda - Pronta Entrega!",
+      "image": "link.jpg",
+      "price": "R$ 449,50"
+    },
+    {
+      "prod": "Ryu Street Fighter IV Action Figure",
+      "desc": "Ryu é o personagem principal da série de jogos de luta Street Fighter e aparece em todos os jogos, bem como em Street Fighter IV. Sem dúvida, Ryu se tornou um dos personagens mais icônicos do gênero de jogos de luta. A Alura Geek está trazendo nossa qualidade de escala 1/6 para o 1/12, recriando Ryu dos jogos para a vida real, com seu quimono de karatê branco com mangas rasgadas, cabelo de comprimento médio, faixa vermelha longa, luvas vermelhas, cinto preto de artes marciais e pés descalços.",
+      "image": "ryu.jpg",
+      "price": "R$ 201,08"
+    },
+    {
+      "prod": "Scorpion Mortal Kombat 11 Action Figure",
+      "desc": "Um dos lutadores mais famosos e mais mortais da saga Mortal Kombat! O Mortal Kombat McFarlane Boneco Scorpion - Fun Divirta-se traz o ninja espectro em uma action figure de 18 cm incrivelmente detalhada, com até 22 partes móveis e inclui espadas Ninja, sua tradicional lança de Scorpion e 1 base. A linha Mortal Kombat também conta com os personagens Shao Khan, Liu Kang e Sub Zero (vendidas separadamente). Idade recomendada: a partir de 12 anos de idade.",
+      "image": "scorpion.jpg",
+      "price": "R$ 329,90"
+    },
+    {
+      "prod": "Sephiroth Final Fantasy VII Action Figure",
+      "desc": "Para os fãs da série de Final Fantasy VII, o antagonista principal Sephiroth! Sephiroth é o resultado de um experimento da megacorporação Shinra, no qual eles injetaram nele células da forma de vida extraterrestre Jenova quando ele ainda era um feto. Ao descobrir isso, Sephiroth decide seguir o que acredita ser seu destino e assumir o controle do Planeta. \n Sendo uma pintura detalhada e o acabamento minucioso transmitem a autenticidade e o cuidado com a Figure hiper detalhada, sendo articulado em vem com peças extras para você personalizar da forma que preferir! Certifique-se em adquirir para sua coleção!",
+      "image": "Sephiroth.jpg",
+      "price": "R$ 469,90"
+    },
+    {
+      "prod": "Squall Leonhart Final Fantasy VIII Action Figure",
+      "desc": "As Action Figures tem ganhado cada vez mais espaço nas estantes dos aficionados por cultura pop, seja por filmes, séries, animes ou games. No entanto, nos últimos anos, uma grande gama de novos colecionadores tem surgido e um dos grandes fatores que contribuem para que isso aconteça é a alta da cultura Nerd/Geek.",
+      "image": "squall.jpg",
+      "price": "R$ 429,90"
+    },
+    {
+      "prod": "Venom Snake Metal Gear Solid V Action Figure",
+      "desc": "Action Figure Venom Snake: Metal Gear Solid V: The Phantom Pain  escala 1/12 - Limtoys\n \n(4) Pares de Mãos\n(2) Armas\n(1) Mascara\n(1) Oculos\n(1) Radio\n(1) Relogio",
+      "image": "venomsnake.jpg",
+      "price": "R$ 1.990,90"
+    }
+  ],
+  "consoles": [
+    {
+      "prod": "Playstation 5",
+      "desc": "Jogar não tem Limites. Desfrute do carregamento extremamente rápido com o SSD de altíssima velocidade, uma imersão mais profunda com suporte a feedback tátil, gatilhos adaptáveis e áudio 3D, além de uma geração inédita de jogos incríveis para Console PlayStation®5 - PS5.",
+      "image": "playstation5.jpg",
+      "price": "R$ 4.559,99"
+    },
+    {
+      "prod": "Xbox Series X",
+      "desc": "Console Xbox Series X - MicrosoftO Xbox Series X é um dos dois sucessores dos consoles de nova geração da Microsoft, que traz consigo um poder de processamento avantajado unido à uma biblioteca de jogos retrocompatíveis que quebra paradigmas.",
+      "image": "xbox-series-x.jpg",
+      "price": "R$ 4.902,79"
+    },
+    {
+      "prod": "Xbox Series S",
+      "desc": "Xbox Series S, o menor e mais elegante de todos os tempos. Com taxas de quadros mais altas, tempos de carregamento mais rápidos e mundos mais ricos e dinâmicos, o Xbox Series S oferece desempenho e velocidade de última geração em um formato compacto e totalmente digital. Retrocompatibilidade com milhares de jogos. Prepare-se para tempos de carregamento mais rápidos, resolução mais alta, taxas de quadros mais estáveis e melhor latência de entrada em milhares de jogos Xbox One, Xbox 360 e Xbox Original.",
+      "image": "xbox-series-s.jpg",
+      "price": "R$ 2.299,90"
+    },
+    {
+      "prod": "Playstation 4",
+      "desc": "O PlayStation 4 Slim é uma remodelação do Fat, sendo mais fino, leve e sem suas bordas tão retas, lembrando a forma de um paralelepípedo. Os botões também sofreram alterações, visto que na versão anterior eles eram eletrostáticos, agora na slim são mecânicos. O PS4 slim é mais elegante, com toques de suavidade nas bordas de seu design exterior, sendo a versão compacta do bom e velho PS4 Fat.\nCom o console você poderá viver grandes aventuras e experimentar as mais diversas emoções cheias de adrenalina tendo ao seu alcance o gigantesco catálogo de jogos disponível para o PS4, como também terá acesso aos poderosos games exclusivos da PlayStation como o GTA V, God of War, The Last of Us, Horizon Zero Dawn, Driveclub, Bloodborne e vários outros que farão você mergulhar no mundo gamer.",
+      "image": "playstation4.jpg",
+      "price": "R$ 1.669,57"
+    },
+    {
+      "prod": "Nintendo Switch",
+      "desc": "O Nintendo Switch traz inovação na jogabilidade apresentando os joy-cons, controles removíveis e personalizáveis que atuam por conta própria captando a distância das mãos, gestos e movimentos, com um sensor infra vermelho e um giroscópio. Acompanham também a função de vibração aprimorada chamada Rumble HD, que pode transmitir sensações táteis fiéis à realidade diretamente às suas mãos.",
+      "image": "nintendo-switch.jpg",
+      "price": "R$ 1.999,99"
+    },
+    {
+      "prod": "Steam Deck",
+      "desc": "Fizemos uma parceria com a AMD para criar a APU personalizada do Steam Deck, otimizada para jogos portáteis. É uma potência Zen 2 + RDNA 2, oferecendo desempenho mais do que suficiente para executar os jogos AAA mais recentes em um envelope de energia muito eficiente.\nDepois de entrar no Steam Deck, toda a sua Biblioteca Steam aparece, como qualquer outro PC. Você também verá a classificação de compatibilidade de cada jogo, indicando o tipo de experiência que você pode esperar ao jogar. Você pode filtrar dinamicamente qualquer exibição em sua biblioteca por classificação de compatibilidade se estiver procurando por tipos específicos de experiências.",
+      "image": "steam-deck.jpg",
+      "price": "R$ 6.199,00"
+    },
+    {
+      "prod": "Controle Xbox One Elite",
+      "desc": "Projetado para atender às necessidades dos jogadores competitivos de hoje, o novo Xbox Elite Wireless Controller Series 2 apresenta mais de 30 novas maneiras de jogar como um profissional. Aprimore sua mira com novos polegares de tensão ajustável, atire ainda mais rápido com travas de gatilho mais curtas e mantenha-se no alvo com um envoltório em volta do punho emborrachado.",
+      "image": "controle-elite-2-xbox.jpg",
+      "price": "R$ 723,00"
+    },
+    {
+      "prod": "Controle DualSense Playstation 5",
+      "desc": "Sinta o feedback fisicamente responsivo às suas ações no jogo com atuadores duplos que substituem os motores tradicionais Em suas mãos, essas vibrações dinâmicas podem simular a sensação de tudo, desde ambientes até o recuo de diferentes armas. Experimente vários níveis de força e tensão conforme você interage com o equipamento e os ambientes do jogo. Desde puxar a corda do arco cada vez mais tensa até pisar no freio em um carro em alta velocidade, sinta-se fisicamente conectado às suas ações na tela. Converse com amigos online usando o microfone embutido ou conectando um fone de ouvido ao conector de 3,5 mm. Ligue e desligue facilmente a captura de voz a qualquer momento com o botão dedicado para silenciar. Capture e transmita seus momentos de jogo mais épicos com o botão criar. Com base no sucesso do botão pioneiro SHARE, \"criar\" oferece aos jogadores mais maneiras de produzir conteúdo de jogos e transmitir suas aventuras ao vivo para o mundo.",
+      "image": "controle-playstation5.jpg",
+      "price": "R$ 359,99"
+    },
+    {
+      "prod": "Controle Xbox One",
+      "desc": "Experimente o conforto e o tato aprimorados do novo Controle Sem Fio Xbox, que apresenta um design elegante, anatômico e punho texturizado. Aproveite o mapeamento de botões personalizado e até o dobro do alcance sem fio. Conecte qualquer fone de ouvido compatível com a entrada de fone de ouvido estéreo de 3,5 mm. E, com a tecnologia Bluetooth, divirta-se com seus jogos favoritos em PCs, notebooks e dispositivos móveis Windows 10.",
+      "image": "controle-xbox-one.jpg",
+      "price": "R$ 499,00"
+    },
+    {
+      "prod": "Controle Pro Nintendo Switch",
+      "desc": "Controle preciso Este controle combina funções revolucionárias, preservando precisão, conforto e precisão em cada movimento. Graças à sua ergonomia especialmente projetada para a posição da sua mão, você pode passar horas jogando em total conforto. Maior conforto e realismo Permite que você jogue sem a necessidade de cabos no meio. Ele foi projetado não só para controlar hor seus videogames, mas também para horar seu realismo e experiência. Ativar Bluetooth Ele tem uma conexão Bluetooth de alta tecnologia para uso em qualquer comdor ou dispositivo; você não precisará mais de aplicativos de terceiros ou cabo USB. Além disso, possui grande capacidade anti-interferência, fácil manuseio e conexão de sinal estável.",
+      "image": "nintendo-switch-controle-pro.jpg",
+      "price": "R$ 201,60"
+    }
+  ],
+  "acessorios": [
+    {
+      "prod": "Camiseta Masculina Classic Games",
+      "desc": "Tecido: 100% algodão, com tratamento Confort que proporciona toque macio, certificado pelo orgão Better Cotton Initiative (BCI) que garante a produção com critérios corretos de sustentatibilidade",
+      "image": "camiseta-masculina-games-classic.jpg",
+      "price": "R$ 79,90"
+    },
+    {
+      "prod": "Camiseta Gamer",
+      "desc": "A camiseta Gaming possui as melhores malhas do mercado, tecido 100% algodão penteado fio 30.1 e sua estampa em silk screen, garantindo maior durabilidade e qualidade à camiseta.",
+      "image": "camiseta-masculina-games.jpg",
+      "price": "R$ 39,90"
+    },
+    {
+      "prod": "Camiseta Feminina Gamer",
+      "desc": "Tecido: 100% algodão, com tratamento Confort que proporciona toque macio, certificado pelo orgão Better Cotton Initiative (BCI) que garante a produção com critérios corretos de sustentatibilidade",
+      "image": "camiseta-feminina-gamer.jpg",
+      "price": "R$ 59,00"
+    },
+    {
+      "prod": "Camiseta Final Fantasy VII",
+      "desc": "Malha de altíssima qualidade com toque macio,durabilidade e muito confortável. Camiseta meia manga com gola redonda costurada com pesponto, deixando a peça com um ótimo visual e acabamento. Possui costura reforçada de ombro a ombro e reforço de gola dando sustentação e caimento perfeitos. Camisetas embaladas individualmente - Ótimo para revenda e lojas",
+      "image": "camiseta-final-fantasy-vii.jpg",
+      "price": "R$ 79,90"
+    },
+    {
+      "prod": "Anel Assassins Creed Valhalla",
+      "desc": "Anel de aço inoxidável inspirado na série de jogos Assassins Creed",
+      "image": "anel-assassins-creed.jpg",
+      "price": "R$ 19,50"
+    },
+    {
+      "prod": "Chaveiro Buster Sword Final Fantasy VII",
+      "desc": "Chaveiro inspirado na espada icônica de Cloud Strife, a Buster Sword do jogo Final Fantasy VII",
+      "image": "buster-sword-final-fantasy-vii.jpg",
+      "price": "R$ 30,00"
+    },
+    {
+      "prod": "Colar Dragonborn The Elder Scrolls - Skyrim",
+      "desc": "Pingente de prata com o famoso símbolo do jogo Skyrim",
+      "image": "colar-skyrim.jpg",
+      "price": "R$ 82,50"
+    },
+    {
+      "prod": "Pingente Squall Final Fantasy VIII",
+      "desc": "Pringente de prata inspirado no personagem Squall Leonhart de Final Fantasy VIII",
+      "image": "pingente-squall-ffviii.jpg",
+      "price": "R$ 53,60"
+    },
+    {
+      "prod": "Pingente Triforce The Legend Of Zelda",
+      "desc": "Pingente de aço inoxidável com o famoso símbolo do jogo The Legend of Zelda",
+      "image": "pingente-zelda.jpg",
+      "price": "R$ 20,00"
+    },
+    {
+      "prod": "Pulseira de couro PUBG",
+      "desc": "Pulseira de couro inspirado no famoso jogo de FPS - Playerunknown's Battlegrounds (PUBG)",
+      "image": "pulseira-pubg.jpg",
+      "price": "R$ 15,50"
+    }
+  ]
+}

@@ -1,0 +1,382 @@
+.home-container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #272626;
+}
+
+.home-hero {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 41.15%, rgba(0, 0, 0, 0.8) 100%), url("../assets/Hero.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 250px 10% 48px 10%;
+}
+
+.home-hero h1 {
+  font-family: "Raleway", sans-serif;
+  font-size: 3.25rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 16px;
+}
+
+.home-hero h3 {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 33px;
+}
+
+.link-hero {
+  border: 1px solid #FF9900;
+  padding: 16px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  color: #FF9900;
+  text-decoration: none;
+}
+
+.home-section {
+  padding: 64px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 150px;
+}
+
+.action-figures-wrapper,
+.consoles-wrapper,
+.accessories-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.af-up,
+.c-up,
+.a-up {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.af-up h2,
+.c-up h2,
+.a-up h2 {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.link-af,
+.link-c,
+.link-a {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FF9900;
+  text-decoration: none;
+  display: flex;
+}
+
+.link-af::after,
+.link-c::after,
+.link-a::after {
+  content: url("../assets/arrow.svg");
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
+}
+
+.af-down,
+.c-down,
+.a-down {
+  position: relative;
+  width: 1430px;
+  overflow: hidden;
+}
+
+.af-elements,
+.c-elements,
+.a-elements {
+  display: flex;
+  gap: 40px;
+  transition: transform 0.5s ease;
+  margin-left: 10px;
+}
+
+.af-arrow-left,
+.c-arrow-left,
+.a-arrow-left {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(39, 38, 38, 1) 0%, rgba(2, 0, 36, 0) 100%);
+  border: none;
+  z-index: 99;
+}
+
+.af-arrow-left .af-arrow-left-icon,
+.af-arrow-right .af-arrow-right-icon,
+.c-arrow-left .c-arrow-left-icon,
+.c-arrow-right .c-arrow-right-icon,
+.a-arrow-left .a-arrow-left-icon,
+.a-arrow-right .a-arrow-right-icon {
+  font-size: 5rem;
+  color: #FFF;
+}
+
+.af-arrow-right,
+.c-arrow-right,
+.a-arrow-right {
+  position: absolute;
+  height: 100%;
+  width: 50px;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(2, 0, 36, 0) 0%, rgba(39, 38, 38, 1) 100%);
+  border: none;
+  z-index: 99;
+}
+
+
+
+.action-figure-container,
+.c-container,
+.a-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.af-image-price,
+.c-image-price,
+.a-image-price {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  width: 170px;
+  height: 170px;
+  overflow: hidden;
+}
+
+.af-image-price span,
+.c-image-price span,
+.a-image-price span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #FFF;
+  background-color: rgba(39, 38, 38, 0.5);
+  padding: 5px;
+  border-bottom: 3px solid #FF9900;
+  pointer-events: none;
+}
+
+.af-product-detail,
+.c-product-detail,
+.a-product-detail {
+  position: relative;
+  margin-top: 10px;
+}
+
+.af-product-fade,
+.c-product-fade,
+.a-product-fade {
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  height: 14px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 0) 70%, rgba(39, 38, 38, 1) 100%);
+}
+
+.af-product-name-crop,
+.c-product-name-crop,
+.a-product-name-crop {
+  width: 170px;
+  height: 14px;
+  overflow: hidden;
+}
+
+.af-product-name-crop h3,
+.c-product-name-crop h3,
+.a-product-name-crop h3 {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #FFF;
+}
+
+.af-product-detail button,
+.c-product-detail button,
+.a-product-detail button {
+  margin-top: 10px;
+  width: 100%;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFF;
+  background-color: #FF9900;
+  border: none;
+  padding: 7px 0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.af-product-detail button:hover,
+.c-product-detail button:hover,
+.a-product-detail button:hover {
+  background-color: rgba(255, 153, 0, 0.8)
+}
+
+@media screen and (max-width: 1450px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 1240px;
+  }
+}
+
+@media screen and (max-width: 1250px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 1031px;
+  }
+}
+
+@media screen and (max-width: 1090px) {
+  .home-hero {
+    padding: 150px 5% 48px 5%;
+  }
+
+  .home-hero h1 {
+    font-size: 2.25rem;
+    margin-bottom: 13px;
+  }
+
+  .home-hero h3 {
+    font-size: 1rem;
+    margin-bottom: 30px;
+  }
+
+  .link-hero {
+    padding: 12px;
+  }
+
+  .home-section {
+    padding: 64px 5%;
+  }
+
+  .af-up h2,
+  .c-up h2,
+  .a-up h2 {
+    font-size: 1.375rem;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 820px;
+  }
+}
+
+@media screen and (max-width: 870px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 610px;
+  }
+}
+
+@media screen and (max-width: 810px) {
+  .home-section {
+    gap: 60px;
+  }
+
+  .action-figures-wrapper,
+  .consoles-wrapper,
+  .accessories-wrapper {
+    gap: 20px;
+  }
+
+  .action-figure-container,
+  .c-container,
+  .a-container {
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 650px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 400px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .home-hero h1 {
+    font-size: 1.5rem;
+  }
+
+  .home-hero h3 {
+    font-size: 0.8rem;
+  }
+
+  .home-hero .link-hero {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 420px) {
+
+  .af-down,
+  .c-down,
+  .a-down {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .af-elements,
+  .c-elements,
+  .a-elements {
+    width: 180px;
+  }
+
+  .action-figures-wrapper,
+  .consoles-wrapper,
+  .accessories-wrapper {
+    gap: 30px;
+  }
+
+  .af-up h2,
+  .c-up h2,
+  .a-up h2 {
+    font-size: 1.1rem;
+  }
+}

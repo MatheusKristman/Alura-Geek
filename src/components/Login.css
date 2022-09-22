@@ -1,0 +1,149 @@
+.login-container {
+  width: 100%;
+  background-color: #272626;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-wrapper {
+  padding: 100px 0;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-wrapper form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 50px;
+}
+
+.login-email-wrapper,
+.login-password-wrapper {
+  position: relative;
+  margin-bottom: 20px;
+  width: 50%;
+}
+
+.login-placeholder {
+  position: absolute;
+  top: 21px;
+  left: 12px;
+  font-family: "Raleway", sans-serif;
+  color: #A2A2A2;
+  font-size: 1rem;
+  pointer-events: none;
+  transition: all 0.4s ease-in-out;
+}
+
+.login-input-email,
+.login-input-password {
+  border-radius: 8px;
+  padding: 27px 12px 10px 12px;
+  width: 100%;
+  border: none;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+}
+
+.login-input-email:focus+.login-placeholder,
+.login-input-password:focus+.login-placeholder,
+.login-email-active,
+.login-password-active {
+  transform: scale(0.8) translate(-16px, -15px);
+}
+
+.login-submit-btn {
+  background-color: #FF9900;
+  border: none;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  color: #FFF;
+  padding: 16px;
+  width: 20%;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.4s ease;
+}
+
+.login-submit-btn:hover {
+  background-color: rgba(255, 153, 0, 0.8);
+}
+
+.login-create-account {
+  background-color: transparent;
+  color: #FF9900;
+  border: 1px solid #FF9900;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  padding: 16px;
+  width: 20%;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background 0.4s ease;
+}
+
+.login-create-account:hover {
+  background-color: rgba(255, 153, 0, 0.3);
+}
+
+@media screen and (max-width: 1460px) {
+
+  .login-submit-btn,
+  .login-create-account {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+
+  .login-email-wrapper,
+  .login-password-wrapper,
+  .login-submit-btn,
+  .login-create-account {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 580px) {
+  .login-wrapper {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .login-placeholder {
+    top: 13px;
+    font-size: 0.8rem;
+  }
+
+  .login-input-email,
+  .login-input-password {
+    padding: 15px 12px 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .login-input-email:focus+.login-placeholder,
+  .login-input-password:focus+.login-placeholder,
+  .login-email-active,
+  .login-password-active {
+    transform: scale(0.7) translate(-20px, -14px);
+  }
+
+  .login-submit-btn,
+  .login-create-account {
+    padding: 10px;
+  }
+}

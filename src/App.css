@@ -1,0 +1,707 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+html,
+body {
+  overflow: auto;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+small,
+strong,
+li,
+ul {
+  font-family: 'Raleway', sans-serif;
+}
+
+.root {
+  position: relative;
+}
+
+.home-header {
+  width: 100%;
+  background-color: #272626;
+  padding: 32px 10%;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-mobile-wrapper {
+  display: none;
+}
+
+.hw-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.hw-left img {
+  cursor: pointer;
+}
+
+.header-input-div {
+  width: 400px;
+  display: flex;
+}
+
+.header-input-div input {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  padding: 12px 16px;
+  border: none;
+  outline: none;
+  width: 80%;
+}
+
+.header-input-div .search-btn {
+  padding: 12.5px 16px;
+  border: none;
+  font-size: 1rem;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #FFF;
+  color: #A2A2A2;
+  cursor: pointer;
+}
+
+.hw-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.hw-right-l {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+.hw-user-logged {
+  color: #FF9900;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hw-cart {
+  position: relative
+}
+
+.hw-cart i {
+  color: #FF9900;
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.hw-cart .hw-cart-counter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(25%, 25%);
+  background-color: #3C3A3A;
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-family: "Raleway", sans-serif;
+  color: #FF9900;
+  pointer-events: none;
+}
+
+.register-btn,
+.login-btn {
+  border: 1px solid #FF9900;
+  padding: 15px 50px;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  color: #FF9900;
+  text-decoration: none;
+  transition: background 0.4s ease;
+}
+
+.register-btn:hover,
+.login-btn:hover {
+  background-color: rgba(255, 153, 0, 0.3);
+}
+
+.header-nav-menu-mobile {
+  display: none;
+}
+
+.home-footer {
+  background-color: #272626;
+}
+
+.home-footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-footer-wrapper {
+  padding: 64px 10%;
+  background-color: #3C3A3A;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.home-footer-logo-item {
+  flex-grow: 1;
+}
+
+.home-footer-links-item {
+  flex-grow: 1;
+}
+
+.home-footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: #FFF;
+  font-family: "Raleway", sans-serif;
+}
+
+.home-footer-links li {
+  cursor: pointer;
+  font-size: 1rem;
+  width: fit-content;
+}
+
+.home-footer-message-item {
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.home-footer-message-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
+.footer-input-name-wrapper {
+  position: relative;
+  margin-top: 8px;
+  height: 56px;
+  width: 97%;
+}
+
+.footer-textarea-message-wrapper {
+  position: relative;
+  margin-top: 16px;
+  height: 82px;
+  width: 97%;
+}
+
+.input-placeholder {
+  font-family: "Raleway", sans-serif;
+  color: #A2A2A2;
+  font-size: 1rem;
+  position: absolute;
+  top: 21px;
+  left: 12px;
+  transition: all 0.4s ease-in-out;
+  pointer-events: none;
+}
+
+.footer-input-name {
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  padding: 27px 12px 10px 12px;
+}
+
+.footer-textarea-message {
+  width: 100%;
+  resize: none;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  font-size: 1rem;
+  font-family: "Raleway", sans-serif;
+  padding: 27px 12px 17px 12px;
+}
+
+.footer-input-name:focus+.input-placeholder,
+.name-active {
+  transform: scale(0.8) translate(-5px, -15px);
+}
+
+.footer-textarea-message:focus+.input-placeholder,
+.message-active {
+  transform: scale(0.8) translate(-22px, -15px);
+}
+
+.home-footer-message-btn {
+  margin-top: 8px;
+  background-color: #FF9900;
+  padding: 16px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  color: #FFF;
+  width: fit-content;
+  border: none;
+  cursor: pointer;
+  transition: background 0.4s ease;
+}
+
+.home-footer-message-btn:hover {
+  background-color: rgba(255, 153, 0, 0.8);
+}
+
+.dev-wrapper {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.dev-wrapper small {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  color: #FF9900;
+}
+
+.dev-links-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.dev-links-wrapper a {
+  color: #FF9900;
+  font-size: 2rem;
+  text-decoration: none;
+}
+
+@media screen and (max-width: 1090px) {
+  .home-header {
+    padding: 32px;
+  }
+
+  .register-btn,
+  .login-btn {
+    padding: 15px;
+  }
+
+  .header-input-div {
+    width: 270px;
+  }
+
+  .header-wrapper {
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .home-header {
+    padding: 18px;
+  }
+
+  .header-wrapper {
+    display: none;
+  }
+
+  .header-mobile-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .hw-left img {
+    width: auto;
+    height: 35px
+  }
+
+  .register-btn,
+  .login-btn {
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+
+  .search-mobile-btn {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    color: #A2A2A2;
+    font-size: 1.3rem;
+  }
+
+  .header-input-div {
+    overflow: hidden;
+  }
+
+  .header-input-div.active {
+    display: flex;
+    opacity: 0;
+    animation: searchFadeIn 0.5s ease forwards;
+  }
+
+  .header-input-div input {
+    padding: 8px 16px;
+  }
+
+  .header-input-div .search-btn {
+    padding: 8px 16px;
+  }
+
+  .hw-right-l {
+    gap: 30px;
+  }
+
+  .hw-cart i {
+    font-size: 1.5rem;
+  }
+
+  .hw-cart .hw-cart-counter {
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+  }
+
+  .hw-user-logged {
+    font-size: 1.5rem;
+  }
+
+  .home-footer-wrapper {
+    padding: 64px 5%;
+  }
+
+  .home-footer-logo-item img {
+    width: auto;
+    height: 35px;
+  }
+
+  .home-footer-links li {
+    font-size: 0.8rem;
+  }
+
+  .home-footer-message-title {
+    font-size: 0.8rem;
+  }
+
+  .footer-input-name-wrapper {
+    height: 40px;
+  }
+
+  .footer-textarea-message-wrapper {
+    margin-top: 10px;
+  }
+
+  .footer-input-name {
+    padding: 15px 12px 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .footer-textarea-message {
+    padding: 15px 12px 17px 12px;
+    font-size: 0.8rem;
+  }
+
+  .input-placeholder {
+    font-size: 0.8rem;
+    top: 13px;
+  }
+
+  .footer-input-name:focus+.input-placeholder,
+  .name-active {
+    transform: scale(0.7) translate(-7px, -14px);
+  }
+
+  .footer-textarea-message:focus+.input-placeholder,
+  .message-active {
+    transform: scale(0.7) translate(-27px, -14px);
+  }
+
+  .home-footer-message-btn {
+    font-size: 0.8rem;
+    padding: 13px;
+    margin-top: 0;
+  }
+
+  .header-input-div .close-search-btn {
+    margin-left: 20px;
+    background-color: transparent;
+    border: none;
+    font-size: 2rem;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home-footer-wrapper {
+    flex-direction: column;
+    gap: 50px;
+  }
+
+  .home-footer-logo-item {
+    display: flex;
+    justify-content: center;
+  }
+
+  .footer-input-name-wrapper,
+  .footer-textarea-message-wrapper {
+    width: 100%;
+  }
+
+  .home-footer-message-btn {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .hw-right {
+    display: none;
+  }
+
+  .hw-right-l {
+    display: none;
+  }
+
+  .hw-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header-nav-menu-mobile {
+    width: 100vw;
+    height: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: #272626;
+    border-top: #222 solid 2px;
+  }
+
+  .header-nav-menu-mobile li {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    color: #FF9900;
+  }
+
+  .header-nav-menu-mobile .nav-cart {
+    position: relative;
+  }
+
+  .header-nav-menu-mobile .nav-cart div {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #3C3A3A;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translate(50%, 0);
+    font-family: "Raleway", sans-serif;
+    font-size: 0.8rem;
+  }
+
+  .home-footer {
+    margin-bottom: 40px;
+  }
+
+  .dev-wrapper {
+    padding: 25px;
+  }
+
+  .dev-wrapper small {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .register-btn {
+    display: none;
+  }
+}
+
+@keyframes searchFadeIn {
+  from {
+    opacity: 0;
+    width: 1px;
+  }
+
+  to {
+    opacity: 1;
+    width: 90%;
+  }
+}
+
+@keyframes searchFadeOut {
+  from {
+    opacity: 1;
+    position: absolute;
+    right: -40px;
+    width: 90%;
+  }
+
+  to {
+    opacity: 0;
+    width: 0px;
+    position: absolute;
+    right: -40px;
+    display: none;
+  }
+}

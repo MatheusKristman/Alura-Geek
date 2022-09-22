@@ -1,0 +1,63 @@
+.notfound-container {
+  width: 100%;
+  height: 70vh;
+  background-color: #3C3A3A;
+}
+
+.notfound-wrapper {
+  height: 100%;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.notfound-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 4rem;
+  color: #FFF;
+  margin-bottom: 30px;
+}
+
+.notfound-desc {
+  font-family: "Raleway", sans-serif;
+  font-size: 3rem;
+  color: #FFF;
+  margin-bottom: 100px;
+}
+
+.notfound-link {
+  background-color: #FF9900;
+  padding: 16px;
+  border-radius: 4px;
+  font-family: "Raleway", sans-serif;
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: #FFF;
+}
+
+@media screen and (max-width: 550px) {
+  .notfound-title {
+    font-size: 3rem;
+  }
+
+  .notfound-desc {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .notfound-title {
+    font-size: 2rem;
+  }
+
+  .notfound-desc {
+    font-size: 1.5rem;
+  }
+
+  .notfound-link {
+    padding: 10px;
+    font-size: 1rem;
+  }
+}

@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState, useContext, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { SearchContext } from "../App";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import data from "../data.json";
@@ -23,6 +23,8 @@ function Home() {
   const afCarousel = useRef(null);
   const cCarousel = useRef(null);
   const aCarousel = useRef(null);
+
+  const navigate = useNavigate();
 
   useLayoutEffect(() => {
     function updateSize() {
@@ -354,7 +356,7 @@ function Home() {
       <main className="home-hero">
         <h1>Dezembro Promocional</h1>
         <h3>Produtos selecionados com 33% de desconto</h3>
-        <Link to="/product" className="link-hero">
+        <Link to="/products" className="link-hero">
           Ver Consoles
         </Link>
       </main>
@@ -363,7 +365,7 @@ function Home() {
         <div className="action-figures-wrapper">
           <div className="af-up">
             <h2>Action Figures</h2>
-            <Link to="/product" className="link-af">
+            <Link to="/products" className="link-af">
               Ver tudo
             </Link>
           </div>
@@ -383,7 +385,7 @@ function Home() {
                 <div key={index} className="action-figure-container">
                   <div
                     className="af-image-price"
-                    style={{ backgroundImage: `url(/src/assets/action_figures/${data.image})` }}
+                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
                   >
                     <span>{data.price}</span>
                   </div>
@@ -392,7 +394,7 @@ function Home() {
                     <div className="af-product-name-crop">
                       <h3>{data.prod}</h3>
                     </div>
-                    <button>Ver produto</button>
+                    <button onClick={() => navigate(`/products/${data.prod}`)}>Ver produto</button>
                   </div>
                 </div>
               ))}
@@ -412,7 +414,7 @@ function Home() {
         <div className="consoles-wrapper">
           <div className="c-up">
             <h2>Consoles</h2>
-            <Link to="/product" className="link-c">
+            <Link to="/products" className="link-c">
               Ver tudo
             </Link>
           </div>
@@ -432,7 +434,7 @@ function Home() {
                 <div key={index} className="c-container">
                   <div
                     className="c-image-price"
-                    style={{ backgroundImage: `url(/src/assets/consoles/${data.image})` }}
+                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
                   >
                     <span>{data.price}</span>
                   </div>
@@ -441,7 +443,7 @@ function Home() {
                     <div className="c-product-name-crop">
                       <h3>{data.prod}</h3>
                     </div>
-                    <button>Ver produto</button>
+                    <button onClick={() => navigate(`/products/${data.prod}`)}>Ver produto</button>
                   </div>
                 </div>
               ))}
@@ -461,7 +463,7 @@ function Home() {
         <div className="accessories-wrapper">
           <div className="a-up">
             <h2>Acessórios</h2>
-            <Link to="/product" className="link-a">
+            <Link to="/products" className="link-a">
               Ver tudo
             </Link>
           </div>
@@ -481,7 +483,7 @@ function Home() {
                 <div key={index} className="a-container">
                   <div
                     className="a-image-price"
-                    style={{ backgroundImage: `url(/src/assets/acessorios/${data.image})` }}
+                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
                   >
                     <span>{data.price}</span>
                   </div>
@@ -490,7 +492,7 @@ function Home() {
                     <div className="a-product-name-crop">
                       <h3>{data.prod}</h3>
                     </div>
-                    <button>Ver produto</button>
+                    <button onClick={() => navigate(`/products/${data.prod}`)}>Ver produto</button>
                   </div>
                 </div>
               ))}

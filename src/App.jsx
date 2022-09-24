@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Products from "./components/Products";
 import Product from "./components/Product";
 import NotFound from "./components/NotFound";
 import Logo from "./assets/Logo.png";
@@ -12,7 +13,7 @@ export const SearchContext = createContext();
 
 function App() {
   const [isSearchClicked, setIsSearchClicked] = useState(false);
-  const [isUserLogged, setIsUserLogged] = useState(false);
+  const [isUserLogged, setIsUserLogged] = useState(true);
   const [contactUsData, setContactUsData] = useState({
     name: "",
     message: ""
@@ -219,8 +220,8 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-          <Route exact path="/product" element={<Product />} />
-          <Route exact path="/product/:id" element={<Product />} />
+          <Route exact path="/products" element={<Products />} />
+          <Route exact path="/products/:id" element={<Product />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 

@@ -18,7 +18,7 @@ function Home() {
   const [checkRightC, setCheckRightC] = useState(false);
   const [checkRightA, setCheckRightA] = useState(false);
 
-  const setSearch = useContext(SearchContext);
+  const { setIsSearchClicked } = useContext(SearchContext);
 
   const afCarousel = useRef(null);
   const cCarousel = useRef(null);
@@ -138,7 +138,7 @@ function Home() {
   }, [carouselSlideA]);
 
   function handleSearchBlur() {
-    setSearch(false);
+    setIsSearchClicked(false);
   }
 
   function handleAfRightClick(e) {

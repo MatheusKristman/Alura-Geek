@@ -49,7 +49,7 @@
 
 .login-input-email,
 .login-input-password {
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 27px 12px 10px 12px;
   width: 100%;
   border: none;
@@ -63,6 +63,17 @@
 .login-email-active,
 .login-password-active {
   transform: scale(0.8) translate(-16px, -15px);
+}
+
+.login-error {
+  border: 1px solid red;
+}
+
+.login-error-email,
+.login-error-password {
+  font-family: "Raleway", sans-serif;
+  font-size: 0.8rem;
+  color: red;
 }
 
 .login-submit-btn {

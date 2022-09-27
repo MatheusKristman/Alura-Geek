@@ -1,5 +1,8 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import validate from "../ValidateLogin";
+import { SearchContext } from "../App";
 
 function Login() {
   const [loginData, setLoginData] = useState({
@@ -8,9 +11,24 @@ function Login() {
   });
   const [isEmailFilled, setIsEmailFilled] = useState(false);
   const [isPasswordFilled, setIsPasswordFilled] = useState(false);
+  const [registeredUserData, setRegisteredUserData] = useState({});
+  const [error, setError] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const emailLoginInput = useRef();
   const passwordLoginInput = useRef();
+
+  const { setIsUserLogged } = useContext(SearchContext)
+
+  const navigate = useNavigate();
+
+  useState(() => {
+    function fetchRegisteredData() {
+      const registData = JSON.parse(localStorage.getItem("RegisteredData"));
+      setRegisteredUserData(registData);
+    }
+    fetchRegisteredData();
+  }, []);
 
   useEffect(() => {
     function handleEmailPlaceholder() {
@@ -34,8 +52,28 @@ function Login() {
     handlePasswordPlaceholder();
   }, [loginData.password]);
 
+  useEffect(() => {
+    if (!error.email && !error.password && emailLoginInput.current.value !== "" && passwordLoginInput.current.value !== "") {
+      setIsSubmitting(true);
+    } 
+  }, [error]);
+
+  useEffect(() => {
+    if (isSubmitting && registeredUserData.email === loginData.email && registeredUserData.password === loginData.password) {
+      setIsUserLogged(true);
+      const userData = loginData;
+      localStorage.setItem("UserData", JSON.stringify(userData));
+      navigate("/");
+    }
+  }, [isSubmitting]);
+
   function handleChange(ref, type) {
     setLoginData({ ...loginData, [type]: ref.value });
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    setError(validate(loginData));
   }
 
   return (
@@ -49,7 +87,7 @@ function Login() {
               name="email"
               ref={emailLoginInput}
               onChange={() => handleChange(emailLoginInput.current, "email")}
-              className="login-input-email"
+              className={error.email ? "login-input-email login-error" : "login-input-email"}
             />
             <span
               className={
@@ -58,6 +96,7 @@ function Login() {
             >
               Digite seu email
             </span>
+            {error.email && <small className="login-error-email">Este campo é obrigatório</small>}
           </div>
           <div className="login-password-wrapper">
             <input
@@ -65,7 +104,7 @@ function Login() {
               name="password"
               ref={passwordLoginInput}
               onChange={() => handleChange(passwordLoginInput.current, "password")}
-              className="login-input-password"
+              className={error.password ? "login-input-password login-error" : "login-input-password"}
             />
             <span
               className={
@@ -74,10 +113,11 @@ function Login() {
             >
               Digite sua senha
             </span>
+            {error.password && <small className="login-error-password">Este campo é obrigatório</small>}
           </div>
-          <button className="login-submit-btn">Entrar</button>
+          <button onClick={handleSubmit} className="login-submit-btn">Entrar</button>
         </form>
-        <button className="login-create-account">Crie sua conta</button>
+        <button onClick={() => navigate("/register")} className="login-create-account">Crie sua conta</button>
       </div>
     </div>
   );

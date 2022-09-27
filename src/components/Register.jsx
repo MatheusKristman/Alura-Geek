@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import validate from "../Validate";
 import "./Register.css";
 
 function Register() {
@@ -11,10 +12,14 @@ function Register() {
   const [isEmailRegFilled, setIsEmailRegFilled] = useState(false);
   const [isPassRegFilled, setIsPassRegFilled] = useState(false);
   const [isPassConfirmRegFilled, setIsPassConfirmRegFilled] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState({}); 
 
   const emailRegisterInput = useRef();
   const passwordRegisterInput = useRef();
   const passwordConfirmRegisterInput = useRef();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     function handleEmailPlaceholder() {
@@ -49,12 +54,44 @@ function Register() {
     handlePasswordConfirmPlaceholder();
   }, [registerData.passwordConfirm]);
 
+  useEffect(() => {
+    if (!error.email && !error.password && !error.passwordConfirm && registerData.email !== "" && registerData.password !== "" && registerData.passwordConfirm !== "") {
+      console.log("sem error");
+      setIsSubmitting(true);
+    } else if (error.email) {
+      emailRegisterInput.current.value = "";
+      setRegisterData({ ...registerData, email: "" });
+    } else if (error.password) {
+      passwordRegisterInput.current.value = "";
+      setRegisterData({ ...registerData, password: "" });
+    } else if (error.passwordConfirm) {
+      passwordConfirmRegisterInput.current.value = "";
+      setRegisterData({ ...registerData, passwordConfirm: "" });
+    }
+  }, [error]);
+
+  useEffect(() => {
+    if (isSubmitting) {
+      const registeredData = registerData;
+      localStorage.setItem("RegisteredData", JSON.stringify(registeredData));
+      setTimeout(() => {
+        navigate("/login");
+      }, 3000);
+    }
+  }, [isSubmitting]);
+
   function handleChange(ref, type) {
     setRegisterData({ ...registerData, [type]: ref.value });
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setError(validate(registerData));    
+  }
+
   return (
     <div className="register-container">
+      {isSubmitting && <div className="register-completed"><span>Registrado com sucesso</span><small>Redirecionando...</small></div>}
       <form className="register-form-wrapper">
         <span className="register-title">Registre seus dados</span>
         <div className="register-email-wrapper">
@@ -63,7 +100,7 @@ function Register() {
             name="email"
             ref={emailRegisterInput}
             onChange={() => handleChange(emailRegisterInput.current, "email")}
-            className="register-input-email"
+            className={error.email ? "register-input-email error-input" : "register-input-email"}
           />
           <span
             className={
@@ -74,6 +111,7 @@ function Register() {
           >
             Digite seu email
           </span>
+          <small className="error-email">{error.email}</small>
         </div>
         <div className="register-password1-wrapper">
           <input
@@ -81,7 +119,7 @@ function Register() {
             name="password"
             ref={passwordRegisterInput}
             onChange={() => handleChange(passwordRegisterInput.current, "password")}
-            className="register-input-password1"
+            className={error.password ? "register-input-password1 error-input" : "register-input-password1"}
           />
           <span
             className={
@@ -92,6 +130,7 @@ function Register() {
           >
             Digite sua senha
           </span>
+          <small className="error-pass">{error.password}</small>
         </div>
         <div className="register-password2-wrapper">
           <input
@@ -99,7 +138,7 @@ function Register() {
             name="passwordConfirm"
             ref={passwordConfirmRegisterInput}
             onChange={() => handleChange(passwordConfirmRegisterInput.current, "passwordConfirm")}
-            className="register-input-password2"
+            className={error.passwordConfirm ? "register-input-password2 error-input" : "register-input-password2"}
           />
           <span
             className={
@@ -110,8 +149,9 @@ function Register() {
           >
             Confirme sua senha
           </span>
+          <small className="error-passConf">{error.passwordConfirm}</small>
         </div>
-        <button className="register-submit-btn">Enviar dados</button>
+        <button className="register-submit-btn" onClick={handleSubmit}>Enviar dados</button>
         <Link to="/login" className="login-link">
           Ja possui cadastro?
         </Link>

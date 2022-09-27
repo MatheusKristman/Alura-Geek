@@ -5,6 +5,37 @@
   justify-content: center;
 }
 
+.register-completed {
+  position: absolute;
+  top: 120px;
+  left: 50%;
+  background-color: #FF9900;
+  width: 450px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation-name: SlideDown;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease;
+  transform: translateX(-50%);
+}
+
+.register-completed span {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFF;
+  margin-bottom: 10px;
+}
+
+.register-completed small {
+  font-family: "Raleway", sans-serif;
+  color: #FFF;
+}
+
 .register-form-wrapper {
   width: 50%;
   padding: 100px 0;
@@ -61,6 +92,18 @@
   transform: scale(0.8) translate(-16px, -15px);
 }
 
+.error-input {
+  border: 1px solid red;
+}
+
+.error-passConf,
+.error-pass,
+.error-email {
+  font-family: "Raleway", sans-serif;
+  color: red;
+  font-size: 0.8rem;
+}
+
 .register-submit-btn {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
@@ -70,6 +113,7 @@
   border: none;
   width: 20%;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .login-link {
@@ -143,5 +187,15 @@
 @media screen and (max-width: 350px) {
   .register-form-wrapper {
     width: 80%;
+  }
+}
+
+@keyframes SlideDown {
+  from {
+    transform: translate(-50%, -500px);
+  }
+
+  to {
+    transform: translate(-50%, 0px);
   }
 }

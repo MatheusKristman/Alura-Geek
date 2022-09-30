@@ -16,7 +16,7 @@
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 2rem;
-  color: #FFF;
+  color: #fff;
   position: relative;
   left: 50%;
   top: 50%;
@@ -37,10 +37,11 @@
 }
 
 .product-filtering-title {
+  position: relative;
   font-family: "Raleway", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #FF9900;
+  color: #ff9900;
   margin-bottom: 35px;
 }
 
@@ -49,7 +50,7 @@
   font-family: "Raleway", sans-serif;
   font-size: 2rem;
   font-weight: 700;
-  color: #FFF;
+  color: #fff;
   margin-bottom: 30px;
 }
 
@@ -68,7 +69,7 @@
   padding-left: 20px;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   user-select: none;
   -webkit-touch-callout: none;
@@ -83,7 +84,7 @@
   padding-left: 20px;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   cursor: pointer;
   user-select: none;
   -webkit-touch-callout: none;
@@ -117,7 +118,7 @@
   left: 0;
   height: 15px;
   width: 15px;
-  background-color: #FFF;
+  background-color: #fff;
   cursor: pointer;
   border-radius: 2px;
 }
@@ -128,29 +129,29 @@
   left: 0;
   height: 15px;
   width: 15px;
-  background-color: #3C3A3A;
+  background-color: #3c3a3a;
   cursor: pointer;
   border-radius: 50%;
 }
 
-.product-action-figures-categ-label input~.checkbox,
-.product-consoles-categ-label input~.checkbox,
-.product-accessories-categ-label input~.checkbox {
-  background-color: #3C3A3A;
+.product-action-figures-categ-label input ~ .checkbox,
+.product-consoles-categ-label input ~ .checkbox,
+.product-accessories-categ-label input ~ .checkbox {
+  background-color: #3c3a3a;
 }
 
-.product-price-label input~.radio {
-  background-color: #3C3A3A;
+.product-price-label input ~ .radio {
+  background-color: #3c3a3a;
 }
 
-.product-action-figures-categ-label input:checked~.checkbox,
-.product-consoles-categ-label input:checked~.checkbox,
-.product-accessories-categ-label input:checked~.checkbox {
-  background-color: #3C3A3A;
+.product-action-figures-categ-label input:checked ~ .checkbox,
+.product-consoles-categ-label input:checked ~ .checkbox,
+.product-accessories-categ-label input:checked ~ .checkbox {
+  background-color: #3c3a3a;
 }
 
-.product-price-label input:checked~.radio {
-  background-color: #3C3A3A;
+.product-price-label input:checked ~ .radio {
+  background-color: #3c3a3a;
 }
 
 .checkbox::after {
@@ -165,13 +166,13 @@
   display: none;
 }
 
-.product-action-figures-categ-label input:checked~.checkbox::after,
-.product-consoles-categ-label input:checked~.checkbox::after,
-.product-accessories-categ-label input:checked~.checkbox::after {
+.product-action-figures-categ-label input:checked ~ .checkbox::after,
+.product-consoles-categ-label input:checked ~ .checkbox::after,
+.product-accessories-categ-label input:checked ~ .checkbox::after {
   display: block;
 }
 
-.product-price-label input:checked~.radio::after {
+.product-price-label input:checked ~ .radio::after {
   display: block;
 }
 
@@ -182,7 +183,7 @@
   top: 1px;
   width: 5px;
   height: 8px;
-  border: solid #FF9900;
+  border: solid #ff9900;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
@@ -195,7 +196,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background-color: #FF9900;
+  background-color: #ff9900;
 }
 
 .products-box {
@@ -213,7 +214,7 @@
   justify-content: center;
   font-family: "Raleway", sans-serif;
   font-size: 1.5rem;
-  color: #FFF;
+  color: #fff;
   margin-top: 50px;
 }
 
@@ -238,10 +239,10 @@
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   background-color: rgba(39, 38, 38, 0.5);
   padding: 5px;
-  border-bottom: 3px solid #FF9900;
+  border-bottom: 3px solid #ff9900;
   pointer-events: none;
 }
 
@@ -285,25 +286,27 @@
   }
 
   .product-filtering-title {
+    position: relative;
     padding: 16px;
-    border: 1px solid #FF9900;
+    border: 1px solid #ff9900;
     text-align: center;
     margin-bottom: 0px;
     font-size: 1.5rem;
     transition: background 0.4s ease;
+    z-index: 99;
   }
 
   .product-filtering-title-active {
     font-family: "Raleway", sans-serif;
     font-weight: 700;
-    color: #FFF;
+    color: #fff;
     padding: 16px;
-    border: 1px solid #FF9900;
+    border: 1px solid #ff9900;
     text-align: center;
     margin-bottom: 0px;
     font-size: 1.5rem;
     transition: background 0.4s ease;
-    background-color: #FF9900;
+    background-color: #ff9900;
   }
 
   .product-filtering-container {
@@ -312,7 +315,7 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 25px;
-    border: 1px solid #FF9900;
+    border: 1px solid #ff9900;
     border-top: none;
     height: 0;
     padding: 0;
@@ -331,7 +334,6 @@
 }
 
 @media screen and (max-width: 475px) {
-
   .action-figure-container,
   .c-container,
   .a-container {
@@ -360,7 +362,6 @@
     text-align: center;
   }
 
-
   .af-product-name-crop,
   .c-product-name-crop,
   .a-product-name-crop {
@@ -379,7 +380,6 @@
 }
 
 @media screen and (max-width: 450px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -388,7 +388,6 @@
 }
 
 @media screen and (max-width: 420px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -397,7 +396,6 @@
 }
 
 @media screen and (max-width: 380px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -410,7 +408,6 @@
 }
 
 @media screen and (max-width: 350px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -423,7 +420,6 @@
 }
 
 @media screen and (max-width: 330px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -432,7 +428,6 @@
 }
 
 @media screen and (max-width: 310px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -441,7 +436,6 @@
 }
 
 @media screen and (max-width: 290px) {
-
   .af-image-price-prod,
   .c-image-price-prod,
   .a-image-price-prod {
@@ -449,7 +443,7 @@
   }
 }
 
-@keyframes FadeOut {
+@keyframes FadeOutProduct {
   from {
     opacity: 1;
     transform: translateY(0px);

@@ -129,7 +129,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -150,7 +150,20 @@ small,
 strong,
 li,
 ul {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+}
+
+html::-webkit-scrollbar-track {
+  background-color: #272626;
+}
+
+html::-webkit-scrollbar-thumb {
+  background: #4e4e4e;
+  border-radius: 25px;
 }
 
 .root {
@@ -186,6 +199,7 @@ ul {
 .header-input-div {
   width: 400px;
   display: flex;
+  position: relative;
 }
 
 .header-input-div input {
@@ -199,14 +213,100 @@ ul {
   width: 80%;
 }
 
-.header-input-div .search-btn {
+.header-input-div .search-div {
   padding: 12.5px 16px;
   border: none;
   font-size: 1rem;
   border-top-right-radius: 20px;
   border-bottom-right-radius: 20px;
-  background-color: #FFF;
-  color: #A2A2A2;
+  background-color: #fff;
+  color: #a2a2a2;
+}
+
+.search-result-box {
+  position: absolute;
+  top: calc(100% + 10px);
+  width: calc(100% - 30px);
+  max-height: 400px;
+  background-color: #3c3a3a;
+  z-index: 999;
+  overflow-y: auto;
+}
+
+.search-result-box::-webkit-scrollbar {
+  width: 10px;
+}
+
+.search-result-box::-webkit-scrollbar-track {
+  background-color: #3c3a3a;
+}
+
+.search-result-box::-webkit-scrollbar-thumb {
+  background: #272626;
+  border-radius: 25px;
+}
+
+.search-product-item {
+  margin: 10px 0;
+  height: 125px;
+  width: 100%;
+  padding: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #272626;
+}
+
+.search-product-item:last-child {
+  margin-bottom: 0;
+  border: none;
+}
+
+.search-product-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  height: 100%;
+}
+
+.search-product-image {
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 95px;
+  height: 95px;
+}
+
+.search-product-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 65%;
+}
+
+.search-product-info span {
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  line-height: 25px;
+  color: #fff;
+}
+
+.search-view-product-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.search-view-product-btn a {
+  width: 70%;
+  background-color: #ff9900;
+  text-align: center;
+  text-decoration: none;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -224,17 +324,17 @@ ul {
 
 .hw-user-logged {
   position: relative;
-  color: #FF9900;
+  color: #ff9900;
   font-size: 2rem;
   cursor: pointer;
 }
 
 .hw-cart {
-  position: relative
+  position: relative;
 }
 
 .hw-cart i {
-  color: #FF9900;
+  color: #ff9900;
   font-size: 2rem;
   cursor: pointer;
 }
@@ -244,7 +344,7 @@ ul {
   bottom: 0;
   right: 0;
   transform: translate(25%, 25%);
-  background-color: #3C3A3A;
+  background-color: #3c3a3a;
   width: 25px;
   height: 25px;
   display: flex;
@@ -252,17 +352,17 @@ ul {
   justify-content: center;
   border-radius: 50%;
   font-family: "Raleway", sans-serif;
-  color: #FF9900;
+  color: #ff9900;
   pointer-events: none;
 }
 
 .register-btn,
 .login-btn {
-  border: 1px solid #FF9900;
+  border: 1px solid #ff9900;
   padding: 15px 50px;
   font-size: 1rem;
   font-family: "Raleway", sans-serif;
-  color: #FF9900;
+  color: #ff9900;
   text-decoration: none;
   transition: background 0.4s ease;
 }
@@ -283,7 +383,8 @@ ul {
   width: 350px;
   height: 300px;
   transform: translateX(-50%);
-  background-color: #3C3A3A;
+  background-color: #3c3a3a;
+  z-index: 999;
 }
 
 .cart-container {
@@ -292,11 +393,24 @@ ul {
   overflow-x: hidden;
 }
 
+.cart-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.cart-container::-webkit-scrollbar-track {
+  background-color: #3c3a3a;
+}
+
+.cart-container::-webkit-scrollbar-thumb {
+  background: #272626;
+  border-radius: 25px;
+}
+
 .cart-element {
   display: flex;
   justify-content: space-between;
   height: 125px;
-  border-bottom: 1px solid #FF9900;
+  border-bottom: 1px solid #ff9900;
 }
 
 .cart-images {
@@ -323,12 +437,14 @@ ul {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 1rem;
-  color: #FF9900;
+  color: #ff9900;
   margin-top: 15px;
+  text-align: end;
+  line-height: 20px;
 }
 
 .cart-counter-container {
-  border: 1px solid #FF9900;
+  border: 1px solid #ff9900;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -345,7 +461,7 @@ ul {
 }
 
 .cart-counter-container button:hover {
-  background-color: rgba(255, 153, 0, 0.5)
+  background-color: rgba(255, 153, 0, 0.5);
 }
 
 .cart-counter-container button i {
@@ -355,7 +471,7 @@ ul {
 .cart-counter-container .cart-counter {
   font-family: "Lato", sans-serif;
   font-size: 1rem;
-  color: #FF9900;
+  color: #ff9900;
 }
 
 .cart-product-delete {
@@ -363,7 +479,7 @@ ul {
   bottom: 10px;
   right: 150px;
   background-color: transparent;
-  border: 1px solid #FF9900;
+  border: 1px solid #ff9900;
   height: 39px;
   width: 35px;
   display: flex;
@@ -377,12 +493,12 @@ ul {
   top: 100%;
   left: 0;
   width: 350px;
-  background-color: #FF9900;
+  background-color: #ff9900;
   border: none;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   padding: 16px;
   cursor: pointer;
 }
@@ -390,7 +506,7 @@ ul {
 .cart-finish-btn-disabled {
   cursor: default;
   pointer-events: none;
-  background-color:#d68101;
+  background-color: #d68101;
   color: rgb(204, 204, 204);
 }
 
@@ -406,11 +522,11 @@ ul {
 }
 
 .product-added-container {
-  position: absolute;  
+  position: absolute;
   top: calc(100% + 10px);
-  left: 50%;
+  left: -40px;
   transform: translateX(-50%);
-  background-color: #FF9900;
+  background-color: #ff9900;
   width: 200px;
   height: 60px;
   display: flex;
@@ -420,6 +536,7 @@ ul {
   animation-duration: 1s;
   animation-timing-function: ease;
   animation-fill-mode: forwards;
+  z-index: 9999;
 }
 
 .product-added-title {
@@ -427,20 +544,21 @@ ul {
   font-weight: 500;
   font-size: 1rem;
   line-height: 20px;
-  color: #FFF;
+  color: #fff;
   text-align: center;
 }
 
 .user-logged-container {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 10px);
   left: 50%;
-  border: 1px solid #FF9900;
-  background-color: #3C3A3A;
+  border: 1px solid #ff9900;
+  background-color: #3c3a3a;
   transform: translateX(-50%);
   width: 250px;
   height: 150px;
   cursor: default;
+  z-index: 999;
 }
 
 .user-logged-title {
@@ -458,18 +576,24 @@ ul {
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #FF9900;
+  background-color: #ff9900;
   border: none;
   padding: 16px;
   width: 80%;
   font-family: "Raleway", sans-serif;
+  font-weight: 700;
   font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
-  cursor: pointer;
-  user-select: none;
+}
+
+.user-logged-container a {
+  text-decoration: none;
 }
 
 .home-footer {
@@ -484,7 +608,7 @@ ul {
 
 .home-footer-wrapper {
   padding: 64px 10%;
-  background-color: #3C3A3A;
+  background-color: #3c3a3a;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -502,7 +626,7 @@ ul {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  color: #FFF;
+  color: #fff;
   font-family: "Raleway", sans-serif;
 }
 
@@ -522,7 +646,7 @@ ul {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
   font-weight: 700;
-  color: #FFF;
+  color: #fff;
 }
 
 .footer-input-name-wrapper {
@@ -541,7 +665,7 @@ ul {
 
 .input-placeholder {
   font-family: "Raleway", sans-serif;
-  color: #A2A2A2;
+  color: #a2a2a2;
   font-size: 1rem;
   position: absolute;
   top: 21px;
@@ -571,23 +695,23 @@ ul {
   padding: 27px 12px 17px 12px;
 }
 
-.footer-input-name:focus+.input-placeholder,
+.footer-input-name:focus + .input-placeholder,
 .name-active {
   transform: scale(0.8) translate(-5px, -15px);
 }
 
-.footer-textarea-message:focus+.input-placeholder,
+.footer-textarea-message:focus + .input-placeholder,
 .message-active {
   transform: scale(0.8) translate(-22px, -15px);
 }
 
 .home-footer-message-btn {
   margin-top: 8px;
-  background-color: #FF9900;
+  background-color: #ff9900;
   padding: 16px;
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  color: #FFF;
+  color: #fff;
   width: fit-content;
   border: none;
   cursor: pointer;
@@ -608,7 +732,7 @@ ul {
 .dev-wrapper small {
   font-family: "Raleway", sans-serif;
   font-size: 1rem;
-  color: #FF9900;
+  color: #ff9900;
 }
 
 .dev-links-wrapper {
@@ -618,7 +742,7 @@ ul {
 }
 
 .dev-links-wrapper a {
-  color: #FF9900;
+  color: #ff9900;
   font-size: 2rem;
   text-decoration: none;
 }
@@ -649,7 +773,11 @@ ul {
 
   .hw-cart-menu {
     left: -120px;
-  }  
+  }
+
+  .product-added-container {
+    left: -80px;
+  }
 }
 
 @media screen and (max-width: 750px) {
@@ -662,14 +790,16 @@ ul {
   }
 
   .header-mobile-wrapper {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    z-index: 999;
   }
 
   .hw-left img {
     width: auto;
-    height: 35px
+    height: 35px;
   }
 
   .register-btn,
@@ -682,12 +812,8 @@ ul {
     background-color: transparent;
     border: none;
     height: 100%;
-    color: #A2A2A2;
+    color: #a2a2a2;
     font-size: 1.3rem;
-  }
-
-  .header-input-div {
-    overflow: hidden;
   }
 
   .header-input-div.active {
@@ -700,7 +826,7 @@ ul {
     padding: 8px 16px;
   }
 
-  .header-input-div .search-btn {
+  .header-input-div .search-div {
     padding: 8px 16px;
   }
 
@@ -723,7 +849,11 @@ ul {
   }
 
   .product-added-container {
-    left: -60px;
+    left: -120px;
+  }
+
+  .search-result-box {
+    width: 100%;
   }
 
   .home-footer-wrapper {
@@ -766,12 +896,12 @@ ul {
     top: 13px;
   }
 
-  .footer-input-name:focus+.input-placeholder,
+  .footer-input-name:focus + .input-placeholder,
   .name-active {
     transform: scale(0.7) translate(-7px, -14px);
   }
 
-  .footer-textarea-message:focus+.input-placeholder,
+  .footer-textarea-message:focus + .input-placeholder,
   .message-active {
     transform: scale(0.7) translate(-27px, -14px);
   }
@@ -787,9 +917,18 @@ ul {
     background-color: transparent;
     border: none;
     font-size: 2rem;
-    color: #FFF;
+    color: #fff;
     display: flex;
     align-items: center;
+  }
+
+  .search-product-item {
+    height: 120px;
+  }
+
+  .search-product-image {
+    width: 90px;
+    height: 90px;
   }
 }
 
@@ -811,6 +950,15 @@ ul {
 
   .home-footer-message-btn {
     width: 100%;
+  }
+
+  .search-product-item {
+    height: 160px;
+  }
+
+  .search-product-image {
+    width: 100px;
+    height: 130px;
   }
 }
 
@@ -847,7 +995,7 @@ ul {
   .header-nav-menu-mobile a {
     font-size: 1.2rem;
     padding: 10px 0;
-    color: #FF9900;
+    color: #ff9900;
   }
 
   .header-nav-menu-mobile .nav-cart {
@@ -858,7 +1006,7 @@ ul {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #3C3A3A;
+    background-color: #3c3a3a;
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -897,10 +1045,19 @@ ul {
   .cart-infos-title {
     margin-top: 0px;
     margin-bottom: 10px;
+    text-align: center;
   }
 
   .cart-counter-container {
     margin-bottom: 10px;
+  }
+
+  .search-product-info span {
+    font-size: 0.8rem;
+  }
+
+  .search-view-product-btn a {
+    font-size: 0.8rem;
   }
 
   .user-logged-container {
@@ -915,15 +1072,15 @@ ul {
     left: 50%;
     width: 80%;
     background-color: transparent;
-    border: 1px solid #FF9900;
+    border: 1px solid #ff9900;
     padding: 10px;
     font-family: "Raleway", sans-serif;
     font-size: 1rem;
-    color: #FF9900;
+    color: #ff9900;
     transform: translateX(-50%);
     text-decoration: none;
     text-align: center;
-  } 
+  }
 
   .user-logged-register-btn {
     position: absolute;
@@ -931,11 +1088,11 @@ ul {
     left: 50%;
     width: 80%;
     background-color: transparent;
-    border: 1px solid #FF9900;
+    border: 1px solid #ff9900;
     padding: 10px;
     font-family: "Raleway", sans-serif;
     font-size: 1rem;
-    color: #FF9900;
+    color: #ff9900;
     transform: translateX(-50%);
     text-decoration: none;
     text-align: center;
@@ -948,7 +1105,7 @@ ul {
   .product-added-container {
     top: auto;
     bottom: calc(100% + 5px);
-    left: 50%;
+    left: -90px;
   }
 
   .home-footer {

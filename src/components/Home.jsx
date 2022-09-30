@@ -18,7 +18,7 @@ function Home() {
   const [checkRightC, setCheckRightC] = useState(false);
   const [checkRightA, setCheckRightA] = useState(false);
 
-  const { setIsSearchClicked } = useContext(SearchContext);
+  const { setIsSearchClicked, setInCartPage } = useContext(SearchContext);
 
   const afCarousel = useRef(null);
   const cCarousel = useRef(null);
@@ -46,6 +46,11 @@ function Home() {
 
     window.addEventListener("resize", updateSize);
   });
+
+  useEffect(() => {
+    setInCartPage(false);
+    window.scrollTo(0, 0);
+  }, []);
 
   useEffect(() => {
     function handleHideRightAf() {
@@ -357,7 +362,7 @@ function Home() {
         <h1>Dezembro Promocional</h1>
         <h3>Produtos selecionados com 33% de desconto</h3>
         <Link to="/products" className="link-hero">
-          Ver Consoles
+          Ver Produtos
         </Link>
       </main>
 
@@ -383,10 +388,7 @@ function Home() {
             <div className="af-elements" ref={afCarousel}>
               {data["action-figures"].slice(0, 7).map((data, index) => (
                 <div key={index} className="action-figure-container">
-                  <div
-                    className="af-image-price"
-                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
-                  >
+                  <div className="af-image-price" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="af-product-detail">
@@ -432,10 +434,7 @@ function Home() {
             <div className="c-elements" ref={cCarousel}>
               {data.consoles.slice(0, 7).map((data, index) => (
                 <div key={index} className="c-container">
-                  <div
-                    className="c-image-price"
-                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
-                  >
+                  <div className="c-image-price" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="c-product-detail">
@@ -481,10 +480,7 @@ function Home() {
             <div className="a-elements" ref={aCarousel}>
               {data.acessorios.slice(0, 7).map((data, index) => (
                 <div key={index} className="a-container">
-                  <div
-                    className="a-image-price"
-                    style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}
-                  >
+                  <div className="a-image-price" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="a-product-detail">

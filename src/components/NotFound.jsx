@@ -1,8 +1,13 @@
 import React from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./NotFound.css";
 
 function NotFound() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="notfound-container">
       <div className="notfound-wrapper">

@@ -1,7 +1,7 @@
 import React, { useEffect, useState, createContext, useRef } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { ImExit } from "react-icons/im";
-import { BsTrashFill } from "react-icons/bs";
+import { BsAppIndicator, BsTrashFill } from "react-icons/bs";
 import { IconContext } from "react-icons";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -11,6 +11,8 @@ import Product from "./components/Product";
 import NotFound from "./components/NotFound";
 import Logo from "./assets/Logo.png";
 import "./App.css";
+import Cart from "./components/Cart";
+import data from "./data.json";
 
 export const SearchContext = createContext();
 
@@ -28,6 +30,13 @@ function App() {
   const [productAdded, setProductAdded] = useState(false);
   const [productBuyed, setProductBuyed] = useState([]);
   const [cartCount, setCartCount] = useState(0);
+  const [cameFromCart, setCameFromCart] = useState(false);
+  const [cameFromProduct, setCameFromProduct] = useState(false);
+  const [inCartPage, setInCartPage] = useState(false);
+  const [saveUrl, setSaveUrl] = useState("");
+  const [searchData, setSearchData] = useState("");
+  const [allProducts, setAllProducts] = useState([]);
+  const [isSearchFilled, setIsSearchFilled] = useState(false);
 
   const nameFooterInput = useRef();
   const messageFooterInput = useRef();
@@ -37,10 +46,17 @@ function App() {
 
   useEffect(() => {
     function fetchUserData() {
+      window.scrollTo(0, 0);
       const user = JSON.parse(localStorage.getItem("UserData")) || null;
       if (user !== null) {
         setIsUserLogged(true);
       }
+
+      let products = [];
+      data["action-figures"].forEach((e) => products.push(e));
+      data.consoles.forEach((e) => products.push(e));
+      data.acessorios.forEach((e) => products.push(e));
+      setAllProducts(products);
 
       const cartProducts = JSON.parse(localStorage.getItem("CartProducts")) || [];
       setProductBuyed(cartProducts);
@@ -55,6 +71,7 @@ function App() {
 
       if (!isSearchClicked) {
         header.style.animation = "searchFadeOut 0.5s ease forwards";
+        header.style.overflow = "hidden";
         setTimeout(() => {
           header.style.display = "none";
         }, 500);
@@ -99,12 +116,25 @@ function App() {
     handleCartCount();
   }, [productBuyed]);
 
+  useEffect(() => {
+    function openSearchBox() {
+      if (searchData !== "") {
+        setIsSearchFilled(true);
+      } else {
+        setIsSearchFilled(false);
+      }
+    }
+    openSearchBox();
+  }, [searchData]);
+
   function handleSearch() {
     setIsSearchClicked(!isSearchClicked);
   }
 
   function handleClose() {
     setIsSearchClicked(false);
+    setIsSearchFilled(false);
+    setSearchData("");
   }
 
   function handleChange(ref, type) {
@@ -142,10 +172,11 @@ function App() {
 
   function handleCartProdSumQuant(e) {
     let products = [...productBuyed];
-    products = products.map((prod, index) => (Number(e.currentTarget.id.substring(3, 4)) === index ? { ...prod, quant: prod.quant + 1 } : { ...prod }));
+    products = products.map((prod, index) =>
+      Number(e.currentTarget.id.substring(3, 4)) === index ? { ...prod, quant: prod.quant + 1 } : { ...prod }
+    );
     setProductBuyed(products);
     localStorage.setItem("CartProducts", JSON.stringify(products));
-    console.log(products);
   }
 
   function handleDeleteProduct(e) {
@@ -153,7 +184,17 @@ function App() {
     products = products.filter((prod, index) => Number(e.currentTarget.id.substring(3, 4)) !== index);
     setProductBuyed(products);
     localStorage.setItem("CartProducts", JSON.stringify(products));
-    console.log(products);
+  }
+
+  function handleBuyProcess() {
+    if (!isUserLogged) {
+      setCameFromCart(true);
+    }
+    setIsCartMenuClicked(false);
+  }
+
+  function handleSearchInput(e) {
+    setSearchData(e.target.value);
   }
 
   return (
@@ -171,6 +212,18 @@ function App() {
         productAddedElement,
         productAddedElementTablet,
         productAddedElementMobile,
+        inCartPage,
+        setInCartPage,
+        setCameFromCart,
+        cameFromCart,
+        isUserLogged,
+        cameFromProduct,
+        setCameFromProduct,
+        saveUrl,
+        setSaveUrl,
+        setProductBuyed,
+        searchData,
+        setSearchData,
       }}
     >
       <Router>
@@ -182,21 +235,63 @@ function App() {
                   <img src={Logo} alt="Logo" />
                 </Link>
                 <div className="header-input-div">
-                  <input type="text" name="searchProduct" />
-                  <button className="search-btn">
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  <input
+                    type="text"
+                    value={searchData || ""}
+                    onFocus={() => (searchData !== "" ? setIsSearchFilled(true) : null)}
+                    name="searchProduct"
+                    onChange={handleSearchInput}
+                    autoComplete="off"
+                    autoCorrect="off"
+                  />
+                  <div
+                    onClick={() => {
+                      if (isSearchFilled) {
+                        setSearchData("");
+                        setIsSearchFilled(false);
+                      }
+                    }}
+                    style={isSearchFilled ? { cursor: "pointer" } : {}}
+                    className="search-div"
+                  >
+                    {isSearchFilled ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-magnifying-glass"></i>}
+                  </div>
+                  <div style={isSearchFilled ? { display: "block" } : { display: "none" }} className="search-result-box">
+                    {isSearchFilled
+                      ? allProducts
+                          .filter((prod) => prod.prod.toLowerCase().includes(searchData.toLowerCase()))
+                          .map((prod, index) => (
+                            <div key={index} className="search-product-item">
+                              <div className="search-product-wrapper">
+                                <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                                <div className="search-product-info">
+                                  <span>{prod.prod}</span>
+                                  <div onClick={handleClose} className="search-view-product-btn">
+                                    <Link to={`/products/${prod.prod}`}>Ver produto</Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                      : null}
+                  </div>
                 </div>
               </div>
               <div className="hw-right-l">
                 <div className="hw-cart">
-                  <i onClick={handleCart} className="fa-solid fa-cart-shopping"></i>
+                  <i
+                    onClick={() => (!inCartPage ? handleCart() : null)}
+                    style={inCartPage ? { color: "#3C3A3A", cursor: "default" } : { color: "#FF9900", cursor: "pointer" }}
+                    className="fa-solid fa-cart-shopping"
+                  ></i>
                   {productAdded && (
                     <div ref={productAddedElement} className="product-added-container">
                       <span className="product-added-title">Produto adicionado ao carrinho!</span>
                     </div>
                   )}
-                  <div className="hw-cart-counter">{cartCount}</div>
+                  <div style={inCartPage ? { display: "none" } : { display: "flex" }} className="hw-cart-counter">
+                    {cartCount}
+                  </div>
                   {isCartMenuClicked && (
                     <div className="hw-cart-menu">
                       <div className="cart-container">
@@ -227,7 +322,13 @@ function App() {
                           <span className="cart-empty">Seu carrinho está vazio :(</span>
                         )}
                       </div>
-                      {productBuyed.length !== 0 ? <button className="cart-finish-btn">Finalizar Compra</button> : null}
+                      {productBuyed.length !== 0 ? (
+                        <Link to={!isUserLogged ? "/login" : "/cart"}>
+                          <button onClick={handleBuyProcess} className="cart-finish-btn">
+                            Finalizar Compra
+                          </button>
+                        </Link>
+                      ) : null}
                     </div>
                   )}
                 </div>
@@ -237,10 +338,12 @@ function App() {
                     <div className="user-logged-container">
                       <h2 className="user-logged-title">Usuário Logado</h2>
                       <IconContext.Provider value={{ size: "1.3rem" }}>
-                        <button onClick={logoff} className="user-logged-exit-btn">
-                          <ImExit />
-                          Sair
-                        </button>
+                        <Link to="/">
+                          <button onClick={logoff} className="user-logged-exit-btn">
+                            <ImExit />
+                            Sair
+                          </button>
+                        </Link>
                       </IconContext.Provider>
                     </div>
                   )}
@@ -257,14 +360,19 @@ function App() {
                 </button>
               </div>
               <div id="hwRight" className="hw-right-l" style={isSearchClicked ? { display: "none" } : {}}>
-                <div onClick={handleCart} className="hw-cart">
-                  <i className="fa-solid fa-cart-shopping"></i>
+                <div onClick={() => (!inCartPage ? handleCart() : null)} className="hw-cart">
+                  <i
+                    style={inCartPage ? { color: "#3C3A3A", cursor: "default" } : { color: "#FF9900", cursor: "pointer" }}
+                    className="fa-solid fa-cart-shopping"
+                  ></i>
                   {productAdded && (
                     <div ref={productAddedElementTablet} className="product-added-container">
                       <span className="product-added-title">Produto adicionado ao carrinho!</span>
                     </div>
                   )}
-                  <div className="hw-cart-counter">{cartCount}</div>
+                  <div style={inCartPage ? { display: "none" } : { display: "flex" }} className="hw-cart-counter">
+                    {cartCount}
+                  </div>
                   {isCartMenuClicked && (
                     <div className="hw-cart-menu">
                       <div className="cart-container">
@@ -295,7 +403,13 @@ function App() {
                           <span className="cart-empty">Seu carrinho está vazio :(</span>
                         )}
                       </div>
-                      {productBuyed.length !== 0 ? <button className="cart-finish-btn">Finalizar Compra</button> : null}
+                      {productBuyed.length !== 0 ? (
+                        <Link to={!isUserLogged ? "/login" : "/cart"}>
+                          <button onClick={handleBuyProcess} className="cart-finish-btn">
+                            Finalizar Compra
+                          </button>
+                        </Link>
+                      ) : null}
                     </div>
                   )}
                 </div>
@@ -305,23 +419,53 @@ function App() {
                     <div className="user-logged-container">
                       <h2 className="user-logged-title">Usuário Logado</h2>
                       <IconContext.Provider value={{ size: "1.3rem" }}>
-                        <button onClick={logoff} className="user-logged-exit-btn">
-                          <ImExit />
-                          Sair
-                        </button>
+                        <Link to="/">
+                          <button onClick={logoff} className="user-logged-exit-btn">
+                            <ImExit />
+                            Sair
+                          </button>
+                        </Link>
                       </IconContext.Provider>
                     </div>
                   )}
                 </div>
               </div>
               <div id="headerMobile" style={{ display: "none" }} className={isSearchClicked ? "header-input-div active" : "header-input-div"}>
-                <input type="text" name="searchProduct" />
-                <button className="search-btn">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <input type="text" value={searchData || ""} autoComplete="off" autoCorrect="off" name="searchProduct" onChange={handleSearchInput} />
+                <div
+                  onClick={() => {
+                    if (isSearchFilled) {
+                      setSearchData("");
+                      setIsSearchFilled(false);
+                    }
+                  }}
+                  style={isSearchFilled ? { cursor: "pointer" } : {}}
+                  className="search-div"
+                >
+                  {isSearchFilled ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-magnifying-glass"></i>}
+                </div>
                 <button onClick={handleClose} className="close-search-btn">
                   <i className="fa-solid fa-xmark"></i>
                 </button>
+                <div style={isSearchFilled ? { display: "block" } : { display: "none" }} className="search-result-box">
+                  {isSearchFilled
+                    ? allProducts
+                        .filter((prod) => prod.prod.toLowerCase().includes(searchData.toLowerCase()))
+                        .map((prod, index) => (
+                          <div key={index} className="search-product-item">
+                            <div className="search-product-wrapper">
+                              <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                              <div className="search-product-info">
+                                <span>{prod.prod}</span>
+                                <div onClick={handleClose} className="search-view-product-btn">
+                                  <Link to={`/products/${prod.prod}`}>Ver produto</Link>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                    : null}
+                </div>
               </div>
             </div>
           </header>
@@ -333,10 +477,46 @@ function App() {
                   <img src={Logo} alt="Logo" />
                 </Link>
                 <div className="header-input-div">
-                  <input type="text" name="searchProduct" />
-                  <button className="search-btn">
-                    <i className="fa-solid fa-magnifying-glass"></i>
-                  </button>
+                  <input
+                    type="text"
+                    value={searchData || ""}
+                    onFocus={() => (searchData !== "" ? setIsSearchFilled(true) : null)}
+                    name="searchProduct"
+                    onChange={handleSearchInput}
+                    autoComplete="off"
+                    autoCorrect="off"
+                  />
+                  <div
+                    onClick={() => {
+                      if (isSearchFilled) {
+                        setSearchData("");
+                        setIsSearchFilled(false);
+                      }
+                    }}
+                    style={isSearchFilled ? { cursor: "pointer" } : {}}
+                    className="search-div"
+                  >
+                    {isSearchFilled ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-magnifying-glass"></i>}
+                  </div>
+                  <div style={isSearchFilled ? { display: "block" } : { display: "none" }} className="search-result-box">
+                    {isSearchFilled
+                      ? allProducts
+                          .filter((prod) => prod.prod.toLowerCase().includes(searchData.toLowerCase()))
+                          .map((prod, index) => (
+                            <div key={index} className="search-product-item">
+                              <div className="search-product-wrapper">
+                                <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                                <div className="search-product-info">
+                                  <span>{prod.prod}</span>
+                                  <div onClick={handleClose} className="search-view-product-btn">
+                                    <Link to={`/products/${prod.prod}`}>Ver produto</Link>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                      : null}
+                  </div>
                 </div>
               </div>
               <div className="hw-right">
@@ -366,13 +546,41 @@ function App() {
                 <i className="fa-solid fa-magnifying-glass"></i>
               </button>
               <div id="headerMobile" style={{ display: "none" }} className={isSearchClicked ? "header-input-div active" : "header-input-div"}>
-                <input type="text" name="searchProduct" />
-                <button className="search-btn">
-                  <i className="fa-solid fa-magnifying-glass"></i>
-                </button>
+                <input type="text" value={searchData || ""} autoComplete="off" autoCorrect="off" name="searchProduct" onChange={handleSearchInput} />
+                <div
+                  onClick={() => {
+                    if (isSearchFilled) {
+                      setSearchData("");
+                      setIsSearchFilled(false);
+                    }
+                  }}
+                  style={isSearchFilled ? { cursor: "pointer" } : {}}
+                  className="search-div"
+                >
+                  {isSearchFilled ? <i className="fa-solid fa-xmark"></i> : <i className="fa-solid fa-magnifying-glass"></i>}
+                </div>
                 <button onClick={handleClose} className="close-search-btn">
                   <i className="fa-solid fa-xmark"></i>
                 </button>
+                <div style={isSearchFilled ? { display: "block" } : { display: "none" }} className="search-result-box">
+                  {isSearchFilled
+                    ? allProducts
+                        .filter((prod) => prod.prod.toLowerCase().includes(searchData.toLowerCase()))
+                        .map((prod, index) => (
+                          <div key={index} className="search-product-item">
+                            <div className="search-product-wrapper">
+                              <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                              <div className="search-product-info">
+                                <span>{prod.prod}</span>
+                                <div onClick={handleClose} className="search-view-product-btn">
+                                  <Link to={`/products/${prod.prod}`}>Ver produto</Link>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                    : null}
+                </div>
               </div>
             </div>
           </header>
@@ -384,6 +592,7 @@ function App() {
           <Route exact path="/register" element={<Register />} />
           <Route exact path="/products" element={<Products />} />
           <Route exact path="/products/:id" element={<Product />} />
+          <Route exact path="/cart" element={<Cart />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
 
@@ -391,7 +600,9 @@ function App() {
           <div className="home-footer-container">
             <div className="home-footer-wrapper">
               <div className="home-footer-logo-item">
-                <img src={Logo} alt="Logo Footer" />
+                <Link onClick={() => window.scrollTo(0, 0)} to="/">
+                  <img src={Logo} alt="Logo Footer" />
+                </Link>
               </div>
               <div className="home-footer-links-item">
                 <ul className="home-footer-links">
@@ -450,13 +661,19 @@ function App() {
             </Link>
           </li>
           <li className="nav-cart">
-            <i onClick={handleCart} className="fa-solid fa-cart-shopping"></i>
+            <i
+              onClick={() => (!inCartPage ? handleCart() : null)}
+              style={inCartPage ? { color: "#3C3A3A" } : { color: "#FF9900" }}
+              className="fa-solid fa-cart-shopping"
+            ></i>
             {productAdded && (
               <div ref={productAddedElementMobile} className="product-added-container">
                 <span className="product-added-title">Produto adicionado ao carrinho!</span>
               </div>
             )}
-            <div className="hw-cart-counter">{cartCount}</div>
+            <div style={inCartPage ? { display: "none" } : { display: "flex" }} className="hw-cart-counter">
+              {cartCount}
+            </div>
             {isCartMenuClicked && (
               <div className="hw-cart-menu">
                 <div className="cart-container">
@@ -488,7 +705,11 @@ function App() {
                   )}
                 </div>
                 {productBuyed.length !== 0 ? (
-                  <button className="cart-finish-btn">Finalizar Compra</button>
+                  <Link to={!isUserLogged ? "/login" : "/cart"}>
+                    <button onClick={handleBuyProcess} className="cart-finish-btn">
+                      Finalizar Compra
+                    </button>
+                  </Link>
                 ) : (
                   <button className="cart-finish-btn cart-finish-btn-disabled" disabled="true">
                     Finalizar Compra
@@ -504,10 +725,12 @@ function App() {
                 <div className="user-logged-container">
                   <h2 className="user-logged-title">Usuário Logado</h2>
                   <IconContext.Provider value={{ size: "1.3rem" }}>
-                    <button onClick={logoff} className="user-logged-exit-btn">
-                      <ImExit />
-                      Sair
-                    </button>
+                    <Link to="/">
+                      <button onClick={logoff} className="user-logged-exit-btn">
+                        <ImExit />
+                        Sair
+                      </button>
+                    </Link>
                   </IconContext.Provider>
                 </div>
               ) : (

@@ -7,7 +7,7 @@ import { SearchContext } from "../App";
 function Login() {
   const [loginData, setLoginData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [isEmailFilled, setIsEmailFilled] = useState(false);
   const [isPasswordFilled, setIsPasswordFilled] = useState(false);
@@ -18,14 +18,16 @@ function Login() {
   const emailLoginInput = useRef();
   const passwordLoginInput = useRef();
 
-  const { setIsUserLogged } = useContext(SearchContext)
+  const { setIsUserLogged, setInCartPage, setCameFromCart, cameFromCart, cameFromProduct, saveUrl, setCameFromProduct } = useContext(SearchContext);
 
   const navigate = useNavigate();
 
   useState(() => {
     function fetchRegisteredData() {
-      const registData = JSON.parse(localStorage.getItem("RegisteredData"));
+      window.scrollTo(0, 0);
+      const registData = JSON.parse(localStorage.getItem("RegisteredData")) || {};
       setRegisteredUserData(registData);
+      setInCartPage(false);
     }
     fetchRegisteredData();
   }, []);
@@ -55,15 +57,38 @@ function Login() {
   useEffect(() => {
     if (!error.email && !error.password && emailLoginInput.current.value !== "" && passwordLoginInput.current.value !== "") {
       setIsSubmitting(true);
-    } 
+    }
   }, [error]);
 
   useEffect(() => {
-    if (isSubmitting && registeredUserData.email === loginData.email && registeredUserData.password === loginData.password) {
+    if (
+      isSubmitting &&
+      registeredUserData.email === loginData.email &&
+      registeredUserData.password === loginData.password &&
+      registeredUserData.hasOwnProperty("email") &&
+      registeredUserData.hasOwnProperty("password")
+    ) {
       setIsUserLogged(true);
       const userData = loginData;
       localStorage.setItem("UserData", JSON.stringify(userData));
-      navigate("/");
+      if (cameFromCart) {
+        setCameFromCart("false");
+        navigate("/cart");
+      } else if (cameFromProduct) {
+        setCameFromProduct(false);
+        navigate(saveUrl);
+      } else {
+        navigate("/");
+      }
+    } else {
+      if (
+        loginData.email !== "" &&
+        loginData.password !== "" &&
+        (registeredUserData.email !== loginData.email || registeredUserData.password !== loginData.password)
+      ) {
+        setError({ ...error, email: "Cadastro não localizado!" });
+        setIsSubmitting(false);
+      }
     }
   }, [isSubmitting]);
 
@@ -89,14 +114,8 @@ function Login() {
               onChange={() => handleChange(emailLoginInput.current, "email")}
               className={error.email ? "login-input-email login-error" : "login-input-email"}
             />
-            <span
-              className={
-                isEmailFilled ? "login-placeholder login-email-active" : "login-placeholder"
-              }
-            >
-              Digite seu email
-            </span>
-            {error.email && <small className="login-error-email">Este campo é obrigatório</small>}
+            <span className={isEmailFilled ? "login-placeholder login-email-active" : "login-placeholder"}>Digite seu email</span>
+            {error.email && <small className="login-error-email">{error.email}</small>}
           </div>
           <div className="login-password-wrapper">
             <input
@@ -106,18 +125,16 @@ function Login() {
               onChange={() => handleChange(passwordLoginInput.current, "password")}
               className={error.password ? "login-input-password login-error" : "login-input-password"}
             />
-            <span
-              className={
-                isPasswordFilled ? "login-placeholder login-password-active" : "login-placeholder"
-              }
-            >
-              Digite sua senha
-            </span>
-            {error.password && <small className="login-error-password">Este campo é obrigatório</small>}
+            <span className={isPasswordFilled ? "login-placeholder login-password-active" : "login-placeholder"}>Digite sua senha</span>
+            {error.password && <small className="login-error-password">{error.password}</small>}
           </div>
-          <button onClick={handleSubmit} className="login-submit-btn">Entrar</button>
+          <button onClick={handleSubmit} className="login-submit-btn">
+            Entrar
+          </button>
         </form>
-        <button onClick={() => navigate("/register")} className="login-create-account">Crie sua conta</button>
+        <button onClick={() => navigate("/register")} className="login-create-account">
+          Crie sua conta
+        </button>
       </div>
     </div>
   );

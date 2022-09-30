@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useLayoutEffect, useRef, useContext } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import "./Product.css";
 import data from "../data.json";
@@ -13,10 +13,11 @@ function Product() {
   const [loading, setLoading] = useState(false);
   const [productSelected, setProductSelected] = useState([]);
   const [productRecommendation, setProductRecommendation] = useState([]);
-  const [quant, setQuant] = useState(0);
+  const [quant, setQuant] = useState(1);
 
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const carousel = useRef();
 
@@ -31,10 +32,17 @@ function Product() {
     productAddedElement,
     productAddedElementTablet,
     productAddedElementMobile,
+    setInCartPage,
+    isUserLogged,
+    setCameFromProduct,
+    setSaveUrl,
+    setSearchData,
   } = useContext(SearchContext);
 
   useEffect(() => {
-    setQuant(0);
+    setQuant(1);
+    setInCartPage(false);
+    window.scrollTo(0, 0);
   }, [id]);
 
   useLayoutEffect(() => {
@@ -102,7 +110,6 @@ function Product() {
       await data.acessorios.forEach((e) => products.push(e));
       productSel = await products.filter((product) => product.prod === id);
       products = products.filter((prod) => prod.prod !== id);
-      console.log(products);
       while (productRec.length < 6) {
         const index = Math.floor(Math.random() * products.length);
         if (productRec.indexOf(products[index]) === -1) {
@@ -127,7 +134,7 @@ function Product() {
         setQuant(quant + 1);
         break;
       case "-":
-        quant === 0 ? setQuant(0) : setQuant(quant - 1);
+        quant === 1 ? setQuant(1) : setQuant(quant - 1);
     }
   }
 
@@ -203,44 +210,47 @@ function Product() {
       quant: quant,
     };
     let saveProd = productBuyed;
-    console.log(saveProd.find((prod) => prod.prod === product.prod));
-    if (product.quant !== 0) {
-      if (saveProd.find((prod) => prod.prod === product.prod)) {
-        saveProd = saveProd.map((prod) => (prod.prod === product.prod ? { ...prod, quant: prod.quant + product.quant } : { ...prod }));
-        setProductBuyed(saveProd);
-        setCartCount(cartCount + product.quant);
-        localStorage.setItem("CartProducts", JSON.stringify(saveProd));
-        setIsCartMenuClicked(false);
-        setProductAdded(true);
-        window.scrollTo(0, 0);
-        setTimeout(() => {
-          productAddedElement.current.style.animation = "FadeOut 1s ease forwards";
-          productAddedElementTablet.current.style.animation = "FadeOut 1s ease forwards";
-          productAddedElementMobile.current.style.animation = "FadeOut 1s ease forwards";
-        }, 2100);
-        setTimeout(() => {
-          setProductAdded(false);
-        }, 4000);
-      } else {
-        saveProd.push(product);
-        setProductBuyed(saveProd);
-        setCartCount(cartCount + product.quant);
-        localStorage.setItem("CartProducts", JSON.stringify(saveProd));
-        setIsCartMenuClicked(false);
-        setProductAdded(true);
-        window.scrollTo(0, 0);
-        setTimeout(() => {
-          productAddedElement.current.style.animation = "FadeOut 1s ease forwards";
-          productAddedElementTablet.current.style.animation = "FadeOut 1s ease forwards";
-          productAddedElementMobile.current.style.animation = "FadeOut 1s ease forwards";
-        }, 2100);
-        setTimeout(() => {
-          setProductAdded(false);
-        }, 4000);
+    if (!isUserLogged) {
+      setCameFromProduct(true);
+      setSaveUrl(location.pathname);
+      navigate("/login");
+    } else {
+      if (product.quant !== 0) {
+        if (saveProd.find((prod) => prod.prod === product.prod)) {
+          saveProd = saveProd.map((prod) => (prod.prod === product.prod ? { ...prod, quant: prod.quant + product.quant } : { ...prod }));
+          setProductBuyed(saveProd);
+          setCartCount(cartCount + product.quant);
+          localStorage.setItem("CartProducts", JSON.stringify(saveProd));
+          setIsCartMenuClicked(false);
+          setProductAdded(true);
+          window.scrollTo(0, 0);
+          setTimeout(() => {
+            productAddedElement.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementTablet.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementMobile.current.style.animation = "FadeOutProduct 1s ease forwards";
+          }, 2100);
+          setTimeout(() => {
+            setProductAdded(false);
+          }, 4000);
+        } else {
+          saveProd.push(product);
+          setProductBuyed(saveProd);
+          setCartCount(cartCount + product.quant);
+          localStorage.setItem("CartProducts", JSON.stringify(saveProd));
+          setIsCartMenuClicked(false);
+          setProductAdded(true);
+          window.scrollTo(0, 0);
+          setTimeout(() => {
+            productAddedElement.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementTablet.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementMobile.current.style.animation = "FadeOutProduct 1s ease forwards";
+          }, 2100);
+          setTimeout(() => {
+            setProductAdded(false);
+          }, 4000);
+        }
       }
     }
-
-    console.log(productBuyed);
   }
 
   return (
@@ -278,7 +288,11 @@ function Product() {
         <h2 className="product-recommendation-title">Produtos Relacionados</h2>
         <div className="product-recommendation-wrapper">
           {size < 1370 ? (
-            <button onClick={handleLeftClick} className="prod-arrow-left" style={index === 0 || index === -1 ? { display: "none" } : { display: "flex" }}>
+            <button
+              onClick={handleLeftClick}
+              className="prod-arrow-left"
+              style={index === 0 || index === -1 ? { display: "none" } : { display: "flex" }}
+            >
               <BsChevronLeft className="prod-arrow-left-icon" />
             </button>
           ) : null}
@@ -300,7 +314,11 @@ function Product() {
               ))}
           </div>
           {size < 1370 ? (
-            <button onClick={handleRightClick} style={checkRight || index === -1 ? { display: "none" } : { display: "flex" }} className="prod-arrow-right">
+            <button
+              onClick={handleRightClick}
+              style={checkRight || index === -1 ? { display: "none" } : { display: "flex" }}
+              className="prod-arrow-right"
+            >
               <BsChevronRight className="prod-arrow-right-icon" />
             </button>
           ) : null}

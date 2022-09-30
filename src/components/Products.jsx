@@ -1,6 +1,7 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from "react";
+import React, { useState, useRef, useEffect, useLayoutEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import data from "../data.json";
+import { SearchContext } from "../App";
 import "./Products.css";
 
 function Product() {
@@ -9,7 +10,7 @@ function Product() {
     actionFigure: false,
     consoles: false,
     accessories: false,
-    allProducts: true
+    allProducts: true,
   });
   const initialFilterCost = {
     cost1: false,
@@ -18,12 +19,13 @@ function Product() {
     cost4: false,
     cost5: false,
     cost6: false,
-    all: false
+    all: false,
   };
   const [filterCost, setFilterCost] = useState(initialFilterCost);
   const [length, setLength] = useState(0);
   const [activeAnimation, setActiveAnimation] = useState(false);
   const [isMobileFilterClicked, setIsMobileFilterClicked] = useState(false);
+  const [checkClick, setCheckClick] = useState(false);
 
   const productsBox = useRef(null);
   const actionFigureCheckInput = useRef();
@@ -39,10 +41,14 @@ function Product() {
 
   const navigate = useNavigate();
 
+  const { setInCartPage } = useContext(SearchContext);
+
   useEffect(() => {
+    window.scrollTo(0, 0);
     costFilter7.current.checked = true;
     setFilterCost({ ...filterCost, all: true });
     setActiveAnimation(false);
+    setInCartPage(false);
   }, []);
 
   useLayoutEffect(() => {
@@ -75,7 +81,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -101,7 +107,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -124,7 +130,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -147,7 +153,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -170,7 +176,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -187,7 +193,7 @@ function Product() {
       setProductData({
         ["action-figures"]: actionFigures,
         consoles: consoles,
-        acessorios: accessories
+        acessorios: accessories,
       });
     }
 
@@ -197,53 +203,55 @@ function Product() {
   }, [filterCost]);
 
   useEffect(() => {
-    const filterContainer = document.querySelector(".product-filtering-container");
-    const categContainer = document.querySelector(".product-category-container");
-    const costContainer = document.querySelector(".product-price-container");
+    function handleFilter() {
+      const filterContainer = document.querySelector(".product-filtering-container");
+      const categContainer = document.querySelector(".product-category-container");
+      const costContainer = document.querySelector(".product-price-container");
 
-    if (isMobileFilterClicked && window.innerWidth <= 650) {
-      console.log(isMobileFilterClicked);
-      categContainer.style.display = "block";
-      costContainer.style.display = "block";
-      categContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
-      costContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
-      filterContainer.style.animation = "FadeFilterIn 0.5s ease forwards";
-    }
+      if (checkClick) {
+        console.log("checkado");
+        if (isMobileFilterClicked && window.innerWidth <= 650) {
+          categContainer.style.display = "block";
+          costContainer.style.display = "block";
+          categContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
+          costContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
+          filterContainer.style.animation = "FadeFilterIn 0.5s ease forwards";
+        }
 
-    if (!isMobileFilterClicked && window.innerWidth <= 650) {
-      console.log(isMobileFilterClicked);
-      categContainer.style.animation = "none";
-      costContainer.style.animation = "none";
-      filterContainer.style.animation = "FadeFilterMobileOut 0.5s ease forwards";
-      categContainer.style.display = "none";
-      costContainer.style.display = "none";
-    }
+        if (!isMobileFilterClicked && window.innerWidth <= 650) {
+          categContainer.style.animation = "none";
+          costContainer.style.animation = "none";
+          filterContainer.style.animation = "FadeFilterMobileOut 0.5s ease forwards";
+          categContainer.style.display = "none";
+          costContainer.style.display = "none";
+        }
 
-    if (isMobileFilterClicked && window.innerWidth <= 380) {
-      console.log(isMobileFilterClicked);
-      categContainer.style.display = "block";
-      costContainer.style.display = "block";
-      categContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
-      costContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
-      filterContainer.style.animation = "FadeFilterMobileIn 0.5s ease forwards";
-    }
+        if (isMobileFilterClicked && window.innerWidth <= 380) {
+          categContainer.style.display = "block";
+          costContainer.style.display = "block";
+          categContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
+          costContainer.style.animation = "FadeFilterTextIn 0.5s ease 0.5s forwards";
+          filterContainer.style.animation = "FadeFilterMobileIn 0.5s ease forwards";
+        }
 
-    if (!isMobileFilterClicked && window.innerWidth <= 380) {
-      console.log(isMobileFilterClicked);
-      categContainer.style.animation = "none";
-      costContainer.style.animation = "none";
-      filterContainer.style.animation = "FadeFilterOut 0.5s ease forwards";
-      categContainer.style.display = "none";
-      costContainer.style.display = "none";
-    }
+        if (!isMobileFilterClicked && window.innerWidth <= 380) {
+          categContainer.style.animation = "none";
+          costContainer.style.animation = "none";
+          filterContainer.style.animation = "FadeFilterOut 0.5s ease forwards";
+          categContainer.style.display = "none";
+          costContainer.style.display = "none";
+        }
 
-    if (window.innerWidth > 650) {
-      categContainer.style.display = "block";
-      costContainer.style.display = "block";
-      categContainer.style.animation = "none";
-      costContainer.style.animation = "none";
-      filterContainer.style.animation = "none";
+        if (window.innerWidth > 650) {
+          categContainer.style.display = "block";
+          costContainer.style.display = "block";
+          categContainer.style.animation = "none";
+          costContainer.style.animation = "none";
+          filterContainer.style.animation = "none";
+        }
+      }
     }
+    handleFilter();
   }, [isMobileFilterClicked]);
 
   function handleFilteringCateg(ref, type) {
@@ -262,7 +270,9 @@ function Product() {
 
   function handleFilterMobile() {
     if (window.innerWidth <= 650) {
+      console.log("clicado");
       setIsMobileFilterClicked(!isMobileFilterClicked);
+      setCheckClick(true);
     }
   }
 

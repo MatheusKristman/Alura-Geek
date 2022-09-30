@@ -259,7 +259,7 @@ function Product() {
         productSelected.map((data, index) => (
           <div key={index} className="product-selected-wrapper">
             <div className="product-selected-images">
-              <img src={`/src/assets/products/${data.image}`} alt={data.prod} />
+              <img src={`/assets/products/${data.image}`} alt={data.prod} />
             </div>
             <div className="product-selected-infos">
               <h2 className="product-selected-title">{id}</h2>

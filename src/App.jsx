@@ -9,7 +9,7 @@ import Register from "./components/Register";
 import Products from "./components/Products";
 import Product from "./components/Product";
 import NotFound from "./components/NotFound";
-import Logo from "./assets/Logo.png";
+import Logo from "../public/assets/Logo.png";
 import "./App.css";
 import Cart from "./components/Cart";
 import data from "./data.json";

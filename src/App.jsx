@@ -263,7 +263,7 @@ function App() {
                           .map((prod, index) => (
                             <div key={index} className="search-product-item">
                               <div className="search-product-wrapper">
-                                <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                                <div className="search-product-image" style={{ backgroundImage: `url(/assets/products/${prod.image})` }} />
                                 <div className="search-product-info">
                                   <span>{prod.prod}</span>
                                   <div onClick={handleClose} className="search-view-product-btn">
@@ -298,7 +298,7 @@ function App() {
                         {productBuyed.length !== 0 ? (
                           productBuyed.map((product, index) => (
                             <div key={index} className="cart-element">
-                              <div className="cart-images" style={{ backgroundImage: `url(/src/assets/products/${product.image})` }} />
+                              <div className="cart-images" style={{ backgroundImage: `url(/assets/products/${product.image})` }} />
                               <div className="cart-infos">
                                 <span className="cart-infos-title">{product.prod}</span>
                                 <div className="cart-counter-container">
@@ -379,7 +379,7 @@ function App() {
                         {productBuyed.length !== 0 ? (
                           productBuyed.map((product, index) => (
                             <div key={index} className="cart-element">
-                              <div className="cart-images" style={{ backgroundImage: `url(/src/assets/products/${product.image})` }} />
+                              <div className="cart-images" style={{ backgroundImage: `url(/assets/products/${product.image})` }} />
                               <div className="cart-infos">
                                 <span className="cart-infos-title">{product.prod}</span>
                                 <div className="cart-counter-container">
@@ -454,7 +454,7 @@ function App() {
                         .map((prod, index) => (
                           <div key={index} className="search-product-item">
                             <div className="search-product-wrapper">
-                              <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                              <div className="search-product-image" style={{ backgroundImage: `url(/assets/products/${prod.image})` }} />
                               <div className="search-product-info">
                                 <span>{prod.prod}</span>
                                 <div onClick={handleClose} className="search-view-product-btn">
@@ -505,7 +505,7 @@ function App() {
                           .map((prod, index) => (
                             <div key={index} className="search-product-item">
                               <div className="search-product-wrapper">
-                                <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                                <div className="search-product-image" style={{ backgroundImage: `url(/assets/products/${prod.image})` }} />
                                 <div className="search-product-info">
                                   <span>{prod.prod}</span>
                                   <div onClick={handleClose} className="search-view-product-btn">
@@ -569,7 +569,7 @@ function App() {
                         .map((prod, index) => (
                           <div key={index} className="search-product-item">
                             <div className="search-product-wrapper">
-                              <div className="search-product-image" style={{ backgroundImage: `url(/src/assets/products/${prod.image})` }} />
+                              <div className="search-product-image" style={{ backgroundImage: `url(/assets/products/${prod.image})` }} />
                               <div className="search-product-info">
                                 <span>{prod.prod}</span>
                                 <div onClick={handleClose} className="search-view-product-btn">
@@ -680,7 +680,7 @@ function App() {
                   {productBuyed.length !== 0 ? (
                     productBuyed.map((product, index) => (
                       <div key={index} className="cart-element">
-                        <div className="cart-images" style={{ backgroundImage: `url(/src/assets/products/${product.image})` }} />
+                        <div className="cart-images" style={{ backgroundImage: `url(/assets/products/${product.image})` }} />
                         <div className="cart-infos">
                           <span className="cart-infos-title">{product.prod}</span>
                           <div className="cart-counter-container">

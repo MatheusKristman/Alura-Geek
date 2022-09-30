@@ -443,7 +443,7 @@ function Product() {
           {filterCateg.actionFigure || filterCateg.allProducts
             ? productData["action-figures"].map((data, index) => (
                 <div key={index} style={activeAnimation ? { animation: "FadeIn 0.5s ease forwards" } : {}} className="action-figure-container">
-                  <div className="af-image-price-prod" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
+                  <div className="af-image-price-prod" style={{ backgroundImage: `url(/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="af-product-detail">
@@ -460,7 +460,7 @@ function Product() {
           {filterCateg.consoles || filterCateg.allProducts
             ? productData.consoles.map((data, index) => (
                 <div key={index} style={activeAnimation ? { animation: "FadeIn 0.5s ease forwards" } : {}} className="c-container">
-                  <div className="c-image-price-prod" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
+                  <div className="c-image-price-prod" style={{ backgroundImage: `url(/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="c-product-detail">
@@ -477,7 +477,7 @@ function Product() {
           {filterCateg.accessories || filterCateg.allProducts
             ? productData.acessorios.map((data, index) => (
                 <div key={index} style={activeAnimation ? { animation: "FadeIn 0.5s ease forwards" } : {}} className="a-container">
-                  <div className="a-image-price-prod" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
+                  <div className="a-image-price-prod" style={{ backgroundImage: `url(/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="a-product-detail">

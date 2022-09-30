@@ -300,7 +300,7 @@ function Product() {
             {!loading &&
               productRecommendation.map((data, index) => (
                 <div key={index} style={{ animation: "FadeIn 0.5s ease forwards" }} className="product-recommendation">
-                  <div className="product-image-price" style={{ backgroundImage: `url(/src/assets/products/${data.image})` }}>
+                  <div className="product-image-price" style={{ backgroundImage: `url(/assets/products/${data.image})` }}>
                     <span>{data.price}</span>
                   </div>
                   <div className="product-detail">

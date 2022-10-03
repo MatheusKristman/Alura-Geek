@@ -6,12 +6,6 @@ import "./Products.css";
 
 function Product() {
   const [productData, setProductData] = useState(data);
-  const [filterCateg, setFilterCateg] = useState({
-    actionFigure: false,
-    consoles: false,
-    accessories: false,
-    allProducts: true,
-  });
   const initialFilterCost = {
     cost1: false,
     cost2: false,
@@ -41,7 +35,7 @@ function Product() {
 
   const navigate = useNavigate();
 
-  const { setInCartPage } = useContext(SearchContext);
+  const { setInCartPage, filterCateg, setFilterCateg, footerMenuElement } = useContext(SearchContext);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -49,6 +43,7 @@ function Product() {
     setFilterCost({ ...filterCost, all: true });
     setActiveAnimation(false);
     setInCartPage(false);
+    footerMenuElement.current.style.display = "flex";
   }, []);
 
   useLayoutEffect(() => {
@@ -307,6 +302,7 @@ function Product() {
                     name="actionFiguresCateg"
                     id="actionFiguresCateg"
                     className="product-action-figures-categ-input"
+                    checked={filterCateg.actionFigure}
                     ref={actionFigureCheckInput}
                     onClick={() => handleFilteringCateg(actionFigureCheckInput, "actionFigure")}
                   />
@@ -320,6 +316,7 @@ function Product() {
                     name="consolesCateg"
                     id="consolesCateg"
                     className="product-consoles-categ-input"
+                    checked={filterCateg.consoles}
                     ref={consolesCheckInput}
                     onClick={() => handleFilteringCateg(consolesCheckInput, "consoles")}
                   />
@@ -333,6 +330,7 @@ function Product() {
                     name="accessoriesCateg"
                     id="accessoriesCateg"
                     className="product-accessories-categ-input"
+                    checked={filterCateg.accessories}
                     ref={accessoriesCheckInput}
                     onClick={() => handleFilteringCateg(accessoriesCheckInput, "accessories")}
                   />

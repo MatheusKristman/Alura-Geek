@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
+import { SearchContext } from "../App";
 import "./Success.css";
 
 function Success() {
+  const { footerMenuElement } = useContext(SearchContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    footerMenuElement.current.style.display = "flex";
   }, []);
 
   return (

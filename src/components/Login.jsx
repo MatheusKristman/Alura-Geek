@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./Login.css";
 import validate from "../ValidateLogin";
 import { SearchContext } from "../App";
@@ -18,7 +18,7 @@ function Login() {
   const emailLoginInput = useRef();
   const passwordLoginInput = useRef();
 
-  const { setIsUserLogged, setInCartPage, setCameFromCart, cameFromCart, cameFromProduct, saveUrl, setCameFromProduct } = useContext(SearchContext);
+  const { setIsUserLogged, setInCartPage, setCameFromCart, cameFromCart, footerMenuElement } = useContext(SearchContext);
 
   const navigate = useNavigate();
 
@@ -30,6 +30,7 @@ function Login() {
       setInCartPage(false);
     }
     fetchRegisteredData();
+    footerMenuElement.current.style.display = "none";
   }, []);
 
   useEffect(() => {
@@ -74,9 +75,6 @@ function Login() {
       if (cameFromCart) {
         setCameFromCart("false");
         navigate("/cart");
-      } else if (cameFromProduct) {
-        setCameFromProduct(false);
-        navigate(saveUrl);
       } else {
         navigate("/");
       }

@@ -12,7 +12,7 @@ const Cart = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const { setInCartPage, setProductBuyed } = useContext(SearchContext);
+  const { setInCartPage, setProductBuyed, footerMenuElement } = useContext(SearchContext);
 
   useEffect(() => {
     function fetchProducts() {
@@ -23,7 +23,7 @@ const Cart = () => {
         .map((prod) => Number(prod.price.slice(3).replace(".", "").replace(",", ".")) * prod.quant)
         .reduce((sum, price) => sum + price);
       setTotal(total);
-
+      footerMenuElement.current.style.display = "flex";
       if (location.pathname === "/cart") {
         setInCartPage(true);
       }

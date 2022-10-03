@@ -18,7 +18,7 @@ function Home() {
   const [checkRightC, setCheckRightC] = useState(false);
   const [checkRightA, setCheckRightA] = useState(false);
 
-  const { setIsSearchClicked, setInCartPage } = useContext(SearchContext);
+  const { setIsSearchClicked, setInCartPage, setFilterCateg, footerMenuElement } = useContext(SearchContext);
 
   const afCarousel = useRef(null);
   const cCarousel = useRef(null);
@@ -50,6 +50,7 @@ function Home() {
   useEffect(() => {
     setInCartPage(false);
     window.scrollTo(0, 0);
+    footerMenuElement.current.style.display = "flex";
   }, []);
 
   useEffect(() => {
@@ -370,7 +371,11 @@ function Home() {
         <div className="action-figures-wrapper">
           <div className="af-up">
             <h2>Action Figures</h2>
-            <Link to="/products" className="link-af">
+            <Link
+              onClick={() => setFilterCateg({ actionFigure: true, consoles: false, accessories: false, allProducts: false })}
+              to="/products"
+              className="link-af"
+            >
               Ver tudo
             </Link>
           </div>
@@ -416,7 +421,11 @@ function Home() {
         <div className="consoles-wrapper">
           <div className="c-up">
             <h2>Consoles</h2>
-            <Link to="/products" className="link-c">
+            <Link
+              onClick={() => setFilterCateg({ actionFigure: false, consoles: true, accessories: false, allProducts: false })}
+              to="/products"
+              className="link-c"
+            >
               Ver tudo
             </Link>
           </div>
@@ -462,7 +471,11 @@ function Home() {
         <div className="accessories-wrapper">
           <div className="a-up">
             <h2>Acessórios</h2>
-            <Link to="/products" className="link-a">
+            <Link
+              onClick={() => setFilterCateg({ actionFigure: false, consoles: false, accessories: true, allProducts: false })}
+              to="/products"
+              className="link-a"
+            >
               Ver tudo
             </Link>
           </div>

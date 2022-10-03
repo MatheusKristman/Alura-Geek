@@ -1,11 +1,15 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../App";
 import "./NotFound.css";
 
 function NotFound() {
+  const { footerMenuElement } = useContext(SearchContext);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    footerMenuElement.current.style.display = "flex";
   }, []);
 
   return (

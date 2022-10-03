@@ -22,11 +22,12 @@ function Register() {
 
   const navigate = useNavigate();
 
-  const { setInCartPage } = useContext(SearchContext);
+  const { setInCartPage, footerMenuElement } = useContext(SearchContext);
 
   useEffect(() => {
     setInCartPage(false);
     window.scrollTo(0, 0);
+    footerMenuElement.current.style.display = "none";
   }, []);
 
   useEffect(() => {

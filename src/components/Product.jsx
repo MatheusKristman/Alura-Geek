@@ -17,7 +17,6 @@ function Product() {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const carousel = useRef();
 
@@ -26,23 +25,23 @@ function Product() {
     productBuyed,
     setCartCount,
     cartCount,
-    productAdded,
     setProductAdded,
     setIsCartMenuClicked,
     productAddedElement,
+    productAddedElementNL,
     productAddedElementTablet,
+    productAddedElementTabletNL,
     productAddedElementMobile,
     setInCartPage,
     isUserLogged,
-    setCameFromProduct,
-    setSaveUrl,
-    setSearchData,
+    footerMenuElement,
   } = useContext(SearchContext);
 
   useEffect(() => {
     setQuant(1);
     setInCartPage(false);
     window.scrollTo(0, 0);
+    footerMenuElement.current.style.display = "flex";
   }, [id]);
 
   useLayoutEffect(() => {
@@ -210,45 +209,53 @@ function Product() {
       quant: quant,
     };
     let saveProd = productBuyed;
-    if (!isUserLogged) {
-      setCameFromProduct(true);
-      setSaveUrl(location.pathname);
-      navigate("/login");
-    } else {
-      if (product.quant !== 0) {
-        if (saveProd.find((prod) => prod.prod === product.prod)) {
-          saveProd = saveProd.map((prod) => (prod.prod === product.prod ? { ...prod, quant: prod.quant + product.quant } : { ...prod }));
-          setProductBuyed(saveProd);
-          setCartCount(cartCount + product.quant);
-          localStorage.setItem("CartProducts", JSON.stringify(saveProd));
-          setIsCartMenuClicked(false);
-          setProductAdded(true);
-          window.scrollTo(0, 0);
+    if (product.quant !== 0) {
+      if (saveProd.find((prod) => prod.prod === product.prod)) {
+        saveProd = saveProd.map((prod) => (prod.prod === product.prod ? { ...prod, quant: prod.quant + product.quant } : { ...prod }));
+        setProductBuyed(saveProd);
+        setCartCount(cartCount + product.quant);
+        localStorage.setItem("CartProducts", JSON.stringify(saveProd));
+        setIsCartMenuClicked(false);
+        setProductAdded(true);
+        window.scrollTo(0, 0);
+        if (isUserLogged) {
           setTimeout(() => {
             productAddedElement.current.style.animation = "FadeOutProduct 1s ease forwards";
             productAddedElementTablet.current.style.animation = "FadeOutProduct 1s ease forwards";
             productAddedElementMobile.current.style.animation = "FadeOutProduct 1s ease forwards";
           }, 2100);
-          setTimeout(() => {
-            setProductAdded(false);
-          }, 4000);
         } else {
-          saveProd.push(product);
-          setProductBuyed(saveProd);
-          setCartCount(cartCount + product.quant);
-          localStorage.setItem("CartProducts", JSON.stringify(saveProd));
-          setIsCartMenuClicked(false);
-          setProductAdded(true);
-          window.scrollTo(0, 0);
+          setTimeout(() => {
+            productAddedElementNL.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementTabletNL.current.style.animation = "FadeOutProduct 1s ease forwards";
+          }, 2100);
+        }
+        setTimeout(() => {
+          setProductAdded(false);
+        }, 4000);
+      } else {
+        saveProd.push(product);
+        setProductBuyed(saveProd);
+        setCartCount(cartCount + product.quant);
+        localStorage.setItem("CartProducts", JSON.stringify(saveProd));
+        setIsCartMenuClicked(false);
+        setProductAdded(true);
+        window.scrollTo(0, 0);
+        if (isUserLogged) {
           setTimeout(() => {
             productAddedElement.current.style.animation = "FadeOutProduct 1s ease forwards";
             productAddedElementTablet.current.style.animation = "FadeOutProduct 1s ease forwards";
             productAddedElementMobile.current.style.animation = "FadeOutProduct 1s ease forwards";
           }, 2100);
+        } else {
           setTimeout(() => {
-            setProductAdded(false);
-          }, 4000);
+            productAddedElementNL.current.style.animation = "FadeOutProduct 1s ease forwards";
+            productAddedElementTabletNL.current.style.animation = "FadeOutProduct 1s ease forwards";
+          }, 2100);
         }
+        setTimeout(() => {
+          setProductAdded(false);
+        }, 4000);
       }
     }
   }
